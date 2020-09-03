@@ -28,6 +28,12 @@ public:
 		setGlobal(luaState, value, name);
 	}
 
+	template<class T>
+	LuaRef createRef(T value)
+	{
+		return LuaRef(luaState, value);
+	}
+
 private:
 	lua_State* luaState;
 };

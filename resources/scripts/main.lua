@@ -1,2 +1,3 @@
-p = Player()
-p:show("Sergey")
+function setup(core) 
+	core:setParam("window_title", "Engine is Love!")
+end
