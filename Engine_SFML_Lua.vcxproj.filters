@@ -123,10 +123,10 @@
     <ClCompile Include="source\core\scripts\lua_engine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="source\core\scripts\lua_engine.cpp">
+    <ClCompile Include="source\tinyxml2\tinyxml2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="source\tinyxml2\tinyxml2.cpp">
+    <ClCompile Include="source\core\lua_engine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -284,10 +284,10 @@
     <ClInclude Include="source\luabridge\Vector.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="source\core\scripts\lua_engine.h">
+    <ClInclude Include="source\tinyxml2\tinyxml2.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="source\tinyxml2\tinyxml2.h">
+    <ClInclude Include="source\core\lua_engine.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

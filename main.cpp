@@ -1,6 +1,8 @@
-#include <core/scripts/lua_engine.h>
+#include <core/lua_engine.h>
 
-/*void printMessage(const string& message)
+#define LUA_MAIN_FILE "resources/scripts/main.lua"
+
+void printMessage(const string& message)
 {
 	cout << message << endl;
 }
@@ -18,20 +20,28 @@ struct Player
 	}
 };
 
-int main() 
+void loadLuaNamespaces(LuaEngine& l)
 {
-	LuaEngine l;
-
 	l.getNamespace()
 		.beginClass<Player>("Player")
 			.addConstructor <void (*) (void)> ()
 			.addFunction("show", &Player::show)
 		.endClass();
+}
 
-	l.include("scripts/main.lua");
+int main() 
+{
+	LuaEngine l;
+
+	loadLuaNamespaces(l);
+
+	if (!l.include(LUA_MAIN_FILE))
+	{
+		cout << "File '" << LUA_MAIN_FILE << "' was not found!" << endl;
+	}
 
 	return 0;
-}*/
+}
 
 /*#include <SFML/Graphics.hpp>
 int main()
@@ -54,7 +64,7 @@ int main()
 	return 0;
 }*/
 
-#include <tinyxml2/tinyxml2.h>
+/*#include <tinyxml2/tinyxml2.h>
 
 using namespace tinyxml2;
 
@@ -64,4 +74,4 @@ int main()
 	doc.LoadFile("resources/configs/test.xml");
 	doc.Print();
 	return 0;
-}
+}*/

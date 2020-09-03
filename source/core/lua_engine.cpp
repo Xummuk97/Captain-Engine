@@ -18,5 +18,12 @@ Namespace LuaEngine::getNamespace()
 
 LuaRef LuaEngine::getVariable(const char* name)
 {
-    return getGlobal(luaState, name);
+    LuaRef luaRef = getGlobal(luaState, name);
+
+    if (luaRef.isNil())
+    {
+        cout << "Variable '" << name << "' was not found!" << endl;
+    }
+
+    return luaRef;
 }

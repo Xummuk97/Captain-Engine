@@ -143,7 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\core\scripts\lua_engine.cpp" />
+    <ClCompile Include="source\core\lua_engine.cpp" />
     <ClCompile Include="source\lua\lapi.c" />
     <ClCompile Include="source\lua\lauxlib.c" />
     <ClCompile Include="source\lua\lbaselib.c" />
@@ -182,7 +182,7 @@
     <ClCompile Include="source\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\core\scripts\lua_engine.h" />
+    <ClInclude Include="source\core\lua_engine.h" />
     <ClInclude Include="source\luabridge\detail\CFunctions.h" />
     <ClInclude Include="source\luabridge\detail\ClassInfo.h" />
     <ClInclude Include="source\luabridge\detail\Config.h" />
