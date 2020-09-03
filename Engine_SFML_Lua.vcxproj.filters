@@ -281,6 +281,9 @@
     <ClInclude Include="source\luabridge\Vector.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="source\core\scripts\lua_engine.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="scripts\main.lua" />
