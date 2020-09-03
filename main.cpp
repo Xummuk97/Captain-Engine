@@ -1,45 +1,8 @@
-#include <core/lua_engine.h>
-
-#define LUA_MAIN_FILE "resources/scripts/main.lua"
-
-void printMessage(const string& message)
-{
-	cout << message << endl;
-}
-
-struct Player
-{
-	Player()
-	{
-
-	}
-
-	void show(const string& name)
-	{
-		cout << "Hello, " << name << "!" << endl;
-	}
-};
-
-void loadLuaNamespaces(LuaEngine& l)
-{
-	l.getNamespace()
-		.beginClass<Player>("Player")
-			.addConstructor <void (*) (void)> ()
-			.addFunction("show", &Player::show)
-		.endClass();
-}
+#include <core/core.h>
 
 int main() 
 {
-	LuaEngine l;
-
-	loadLuaNamespaces(l);
-
-	if (!l.include(LUA_MAIN_FILE))
-	{
-		cout << "File '" << LUA_MAIN_FILE << "' was not found!" << endl;
-	}
-
+	Core core;
 	return 0;
 }
 
