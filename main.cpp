@@ -33,7 +33,7 @@ int main()
 	return 0;
 }*/
 
-#include <SFML/Graphics.hpp>
+/*#include <SFML/Graphics.hpp>
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(200, 200), "Lesson 1. kychka-pc.ru");
@@ -51,5 +51,17 @@ int main()
 		window.draw(shape);
 		window.display();
 	}
+	return 0;
+}*/
+
+#include <tinyxml2/tinyxml2.h>
+
+using namespace tinyxml2;
+
+int main()
+{
+	XMLDocument doc;
+	doc.LoadFile("resources/configs/test.xml");
+	doc.Print();
 	return 0;
 }
