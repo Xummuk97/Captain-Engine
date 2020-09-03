@@ -2,18 +2,33 @@
 
 void printMessage(const string& message)
 {
-    cout << message << endl;
+	cout << message << endl;
 }
+
+struct Player
+{
+	Player()
+	{
+
+	}
+
+	void show(const string& name)
+	{
+		cout << "Hello, " << name << "!" << endl;
+	}
+};
 
 int main() 
 {
-    LuaEngine l;
+	LuaEngine l;
 
-    l.getNamespace().beginNamespace("game")
-        .addFunction("message", &printMessage).
-        endNamespace();
+	l.getNamespace()
+		.beginClass<Player>("Player")
+			.addConstructor <void (*) (void)> ()
+			.addFunction("show", &Player::show)
+		.endClass();
 
-    l.include("scripts/main.lua");
+	l.include("scripts/main.lua");
 
-    return 0;
+	return 0;
 }

@@ -1,2 +1,2 @@
--- script.lua
-game.message("Hello, world!")
+p = Player()
+p:show("Sergey")
