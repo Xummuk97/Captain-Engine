@@ -185,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="source\core\core.h" />
     <ClInclude Include="source\core\lua_engine.h" />
+    <ClInclude Include="source\core\object.h" />
     <ClInclude Include="source\luabridge\detail\CFunctions.h" />
     <ClInclude Include="source\luabridge\detail\ClassInfo.h" />
     <ClInclude Include="source\luabridge\detail\Config.h" />

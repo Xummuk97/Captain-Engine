@@ -29,7 +29,7 @@ public:
 	}
 
 	template<class T>
-	LuaRef createRef(T value)
+	LuaRef createVariable(T value)
 	{
 		return LuaRef(luaState, value);
 	}
