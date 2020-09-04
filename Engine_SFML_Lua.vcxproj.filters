@@ -323,6 +323,9 @@
     <Image Include="source\tinyxml2\TinyXML2_small.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="resources\textures\test1.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="resources\configs\test.xml" />

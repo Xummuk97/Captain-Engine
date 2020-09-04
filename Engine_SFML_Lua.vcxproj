@@ -260,6 +260,7 @@
     <Text Include="source\tinyxml2\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\textures\test1.png" />
     <Image Include="source\tinyxml2\TinyXML2_small.png" />
   </ItemGroup>
   <ItemGroup>

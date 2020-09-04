@@ -4,6 +4,7 @@
 Core*					Core::core;
 RenderWindow*			Core::renderWindow;
 LuaEngine				Core::luaEngine;
+map<string, Texture>	Core::textures;
 
 Core::Core()
 {
@@ -89,6 +90,13 @@ LuaRef Core::getParam(const string& name)
 	return Core::luaEngine.createVariable(0);
 }
 
+void Core::loadTexture(const string& name, const string& file)
+{
+	Texture texture;
+	texture.loadFromFile("resources/textures/" + file);
+	Core::textures[name] = texture;
+}
+
 void Core::loadLuaNamespaces()
 {
 	Core::luaEngine.getNamespace()
@@ -96,6 +104,7 @@ void Core::loadLuaNamespaces()
 			.addConstructor<void (*) (void)>()
 			.addFunction("setParam", &Core::setParam)
 			.addFunction("getParam", &Core::getParam)
+			.addFunction("loadTexture", &Core::loadTexture)
 		.endClass()
 		.beginClass<Vector2i>("Vector2i")
 			.addConstructor<void (*) (void)>()\
@@ -117,6 +126,13 @@ void Core::loadLuaNamespaces()
 			.addFunction("update", &AbstractObject::update)
 			.addFunction("draw", &AbstractObject::draw)
 			.addFunction("getType", &AbstractObject::getType)
+		.endClass()
+		.deriveClass<VisualObject, AbstractObject>("VisualObject")
+			.addConstructor<void (*) (void)>()
+			.addFunction("update", &VisualObject::update)
+			.addFunction("draw", &VisualObject::draw)
+			.addFunction("setTexture", &VisualObject::setTexture)
+			.addFunction("setTextureRect", &VisualObject::setTextureRect)
 		.endClass();
 }
 
@@ -133,6 +149,10 @@ void Core::startWindow()
 			}
 		}
 		Core::renderWindow->clear();
+
+		LuaRef draw = Core::luaEngine.getVariable("draw");
+		draw();
+
 		Core::renderWindow->display();
 	}
 }

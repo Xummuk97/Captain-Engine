@@ -29,3 +29,19 @@ public:
 private:
 	string type;
 };
+
+class VisualObject : public AbstractObject
+{
+public:
+	VisualObject();
+	~VisualObject();
+
+	void update();
+	void draw();
+
+	void setTexture(const string& name);
+	void setTextureRect(int x, int y, int width, int height);
+
+private:
+	Sprite sprite;
+};

@@ -16,9 +16,12 @@ public:
 	void setParam(const string& name, LuaRef value);
 	LuaRef getParam(const string& name);
 
+	void loadTexture(const string& name, const string& file);
+
 	static Core* core;
 	static RenderWindow* renderWindow;
 	static LuaEngine luaEngine;
+	static map<string, Texture> textures;
 
 private:
 	void loadLuaNamespaces();
