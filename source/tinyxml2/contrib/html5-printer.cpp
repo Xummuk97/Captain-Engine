@@ -90,6 +90,7 @@ protected:
     }
 };
 
+/*
 int	main (void) {
     XMLDocument doc (false);
     doc.Parse (input);
@@ -105,4 +106,4 @@ int	main (void) {
     std::cout << "XMLPrinterHTML5:\n" << html5.CStr() << "\n";
 
     return 0;
-}
+}*/
