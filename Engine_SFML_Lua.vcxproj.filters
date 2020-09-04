@@ -120,9 +120,6 @@
     <ClCompile Include="source\lua\lzio.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="source\core\scripts\lua_engine.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="source\tinyxml2\tinyxml2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -294,6 +291,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="source\core\core.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\object.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

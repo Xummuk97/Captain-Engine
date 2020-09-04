@@ -18,12 +18,11 @@ public:
 
 	static Core* core;
 	static RenderWindow* renderWindow;
+	static LuaEngine luaEngine;
 
 private:
 	void loadLuaNamespaces();
 	void startWindow();
-
-	LuaEngine luaEngine;
 
 	string windowTitle = "Captain Engine 1.0";
 	int windowWidth = 800;
