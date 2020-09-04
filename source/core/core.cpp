@@ -20,8 +20,9 @@ Core::Core()
 	Core::renderWindow->setFramerateLimit(windowFPS);
 	Core::renderWindow->setVerticalSyncEnabled(windowVerticalSyncEnabled);
 
+	Core::luaEngine.setVariable("core", this);
+
 	LuaRef setup = Core::luaEngine.getVariable("setup");
-	LuaRef core = Core::luaEngine.createVariable(this);
 	setup(core);
 
 	startWindow();
@@ -111,7 +112,12 @@ void Core::loadLuaNamespaces()
 			.addProperty("x", &Vector2f::x)
 			.addProperty("y", &Vector2f::y)
 		.endClass()
-		.beginClass<Object>("Object");
+		.beginClass<AbstractObject>("AbstractObject")
+			.addConstructor<void (*) (const string&)>()
+			.addFunction("update", &AbstractObject::update)
+			.addFunction("draw", &AbstractObject::draw)
+			.addFunction("getType", &AbstractObject::getType)
+		.endClass();
 }
 
 void Core::startWindow()

@@ -10,6 +10,14 @@ AbstractObject::~AbstractObject()
 {
 }
 
+void AbstractObject::update()
+{
+}
+
+void AbstractObject::draw()
+{
+}
+
 LuaRef AbstractObject::getType()
 {
 	return Core::luaEngine.createVariable(type);

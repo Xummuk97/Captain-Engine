@@ -21,8 +21,8 @@ public:
 	AbstractObject(const string& type);
 	~AbstractObject();
 
-	virtual void update() = 0;
-	virtual void draw() = 0;
+	virtual void update();
+	virtual void draw();
 
 	LuaRef getType();
 
