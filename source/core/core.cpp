@@ -1,4 +1,5 @@
 #include "core.h"
+#include <core/object.h>
 
 Core*					Core::core;
 RenderWindow*			Core::renderWindow;
@@ -109,7 +110,8 @@ void Core::loadLuaNamespaces()
 			.addConstructor<void (*) (void)>()\
 			.addProperty("x", &Vector2f::x)
 			.addProperty("y", &Vector2f::y)
-		.endClass();
+		.endClass()
+		.beginClass<Object>("Object");
 }
 
 void Core::startWindow()
