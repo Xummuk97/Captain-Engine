@@ -1,6 +1,8 @@
 #include "core.h"
 #include <core/object.h>
-#include <conio.h>
+#include "imgui.h"
+#include "imgui-SFML.h"
+
 Core*					Core::core;
 RenderWindow*			Core::renderWindow;
 LuaEngine				Core::luaEngine;
@@ -23,6 +25,8 @@ Core::Core()
 	Core::renderWindow = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	Core::renderWindow->setFramerateLimit(windowFPS);
 	Core::renderWindow->setVerticalSyncEnabled(windowVerticalSyncEnabled);
+
+	ImGui::SFML::Init(*Core::renderWindow);
 
 	Core::luaEngine.setVariable("core", this);
 
@@ -197,6 +201,8 @@ void Core::startWindow()
 		eventProcess();
 		gameProcess();
 	}
+
+	ImGui::SFML::Shutdown();
 }
 
 void Core::eventProcess()
@@ -204,6 +210,8 @@ void Core::eventProcess()
 	sf::Event event;
 	while (Core::renderWindow->pollEvent(event))
 	{
+		ImGui::SFML::ProcessEvent(event);
+
 		if (event.type == sf::Event::Closed)
 		{
 			Core::renderWindow->close();
@@ -214,12 +222,17 @@ void Core::eventProcess()
 void Core::gameProcess()
 {
 	Core::deltaTime = clock.getElapsedTime().asSeconds();
-	Core::clock.restart();
 
 	for (Object* obj : objects)
 	{
 		Core::luaEngine.getVariable("update")(obj);
 	}
+
+	ImGui::SFML::Update(*Core::renderWindow, Core::clock.restart());
+
+	ImGui::Begin("Hello, world!");
+	ImGui::Button("Look at this pretty button");
+	ImGui::End();
 
 	Core::renderWindow->clear();
 
@@ -227,6 +240,8 @@ void Core::gameProcess()
 	{
 		Core::luaEngine.getVariable("draw")(obj);
 	}
+
+	ImGui::SFML::Render(*Core::renderWindow);
 
 	Core::renderWindow->display();
 

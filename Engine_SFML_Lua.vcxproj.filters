@@ -132,6 +132,21 @@
     <ClCompile Include="source\core\object.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="source\imgui\imgui.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\imgui\imgui_demo.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\imgui\imgui_draw.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\imgui\imgui_widgets.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\imgui\imgui-SFML.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\lua\lapi.h">
@@ -299,6 +314,33 @@
     <ClInclude Include="source\core\object.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="source\imgui\imconfig.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imconfig-SFML.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imgui.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imgui_internal.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imgui-SFML.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imgui-SFML_export.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imstb_rectpack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imstb_textedit.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\imgui\imstb_truetype.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="source\tinyxml2\.gitignore" />
@@ -314,10 +356,20 @@
     <None Include="source\tinyxml2\setversion.py" />
     <None Include="source\tinyxml2\tinyxml2.pc.in" />
     <None Include="resources\scripts\main.lua" />
+    <None Include="source\imgui\.appveyor.yml" />
+    <None Include="source\imgui\.editorconfig" />
+    <None Include="source\imgui\.gitattributes" />
+    <None Include="source\imgui\.gitignore" />
+    <None Include="source\imgui\.travis.yml" />
+    <None Include="source\imgui\conanfile.py" />
+    <None Include="source\imgui\LICENSE" />
+    <None Include="source\imgui\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="source\tinyxml2\CMakeLists.txt" />
     <Text Include="source\tinyxml2\LICENSE.txt" />
+    <Text Include="source\imgui\CMakeLists.txt" />
+    <Text Include="source\imgui\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="source\tinyxml2\TinyXML2_small.png">

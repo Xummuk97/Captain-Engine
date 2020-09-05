@@ -1,7 +1,7 @@
 function setup()
 	core:loadTexture("test", "test1.png")
 
-	core:spawn("Player", 10000)
+	core:spawn("Player", 1)
 end
 
 function init(obj)
