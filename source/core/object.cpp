@@ -1,52 +1,55 @@
 #include "object.h"
 #include <core/core.h>
 
-AbstractObject::AbstractObject(const string& type)
+Object::Object(const string& type)
 	: type(type)
 {
+	Core::luaEngine.getVariable("init")(this);
 }
 
-AbstractObject::~AbstractObject()
+Object::~Object()
 {
 }
 
-void AbstractObject::update()
-{
-}
-
-void AbstractObject::draw()
-{
-}
-
-LuaRef AbstractObject::getType()
+LuaRef Object::getType()
 {
 	return Core::luaEngine.createVariable(type);
 }
 
-VisualObject::VisualObject()
-	: AbstractObject("VisualObject")
+void Object::setTexture(const string& name)
 {
+	sprite = new Sprite();
+	sprite->setTexture(*Core::textures[name]);
 }
 
-VisualObject::~VisualObject()
+void Object::setTextureRect(int x, int y, int width, int height)
 {
+	if (sprite)
+	{
+		sprite->setTextureRect({ x, y, width, height });
+	}
 }
 
-void VisualObject::update()
+void Object::drawSprite()
 {
+	if (sprite)
+	{
+		Core::renderWindow->draw(*sprite);
+	}
 }
 
-void VisualObject::draw()
+void Object::setPosition(float x, float y)
 {
-	Core::renderWindow->draw(sprite);
+	if (sprite)
+	{
+		sprite->setPosition(x, y);
+	}
 }
 
-void VisualObject::setTexture(const string& name)
+void Object::move(float x, float y)
 {
-	sprite.setTexture(Core::textures[name]);
-}
-
-void VisualObject::setTextureRect(int x, int y, int width, int height)
-{
-	sprite.setTextureRect({ x, y, width, height });
+	if (sprite)
+	{
+		sprite->move(x * Core::deltaTime * 100.0f, y * Core::deltaTime * 100.0f);
+	}
 }

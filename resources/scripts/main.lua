@@ -1,15 +1,26 @@
-o1 = VisualObject()
-
 function setup()
-	core:loadTexture("test1", "test1.png")
+	core:loadTexture("test", "test1.png")
 
-	o1:setTexture("test1")
-	o1:setTextureRect(0, 0, 32, 32)
+	core:addObject("Player")
 end
 
-function update(deltaTime)
-end 
+function init(obj)
+	if obj:getType() == "Player" then
+		obj:setTexture("test")
+		obj:setTextureRect(0, 0, 32, 32)
+	end
+end
 
-function draw()
-	o1:draw()
+function update(obj)
+	if obj:getType() == "Player" then
+		if core:isKeyPressed(KB_D) then
+			obj:move(1.0, 0.0)
+		end
+	end
+end
+
+function draw(obj)
+	if obj:getType() == "Player" then
+		obj:drawSprite()
+	end
 end
