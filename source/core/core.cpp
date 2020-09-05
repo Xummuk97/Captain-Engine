@@ -128,9 +128,12 @@ void Core::loadTexture(const string& name, const string& file)
 	Core::textures[name] = texture;
 }
 
-void Core::addObject(const string& name)
+void Core::spawn(const string& name, int count)
 {
-	Core::objects.push_back(new Object(name));
+	for (int i = 0; i < count; i++)
+	{
+		Core::objects.push_back(new Object(name));
+	}
 }
 
 bool Core::isKeyPressed(int key)
@@ -146,7 +149,7 @@ void Core::loadLuaNamespaces()
 			.addFunction("setParam", &Core::setParam)
 			.addFunction("getParam", &Core::getParam)
 			.addFunction("loadTexture", &Core::loadTexture)
-			.addFunction("addObject", &Core::addObject)
+			.addFunction("spawn", &Core::spawn)
 			.addFunction("isKeyPressed", &Core::isKeyPressed)
 		.endClass()
 		.beginClass<Vector2i>("Vector2i")

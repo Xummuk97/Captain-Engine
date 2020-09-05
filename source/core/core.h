@@ -22,7 +22,7 @@ public:
 
 	void loadTexture(const string& name, const string& file);
 
-	void addObject(const string& name);
+	void spawn(const string& name, int count);
 
 	bool isKeyPressed(int key);
 

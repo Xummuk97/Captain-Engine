@@ -1,7 +1,7 @@
 function setup()
 	core:loadTexture("test", "test1.png")
 
-	core:addObject("Player")
+	core:spawn("Player", 10000)
 end
 
 function init(obj)
@@ -13,9 +13,7 @@ end
 
 function update(obj)
 	if obj:getType() == "Player" then
-		if core:isKeyPressed(KB_D) then
-			obj:move(1.0, 0.0)
-		end
+		obj:move(1.0, 0.0)
 	end
 end
 
