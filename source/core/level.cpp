@@ -69,6 +69,28 @@ int Level::getMapIdFromName(const string& name)
 	return -1;
 }
 
+LuaRef Level::getObjectInfoFromUniqueId(int uniqueId)
+{
+	LuaRef info = Core::luaEngine.createTable();
+
+	size_t size = layers.size();
+	int index;
+
+	for (size_t i = 0; i < size; i++)
+	{
+		index = layers[i]->getObjectIdFromUniqueId(uniqueId);
+
+		if (index != -1)
+		{
+			info["layer"] = i;
+			info["object"] = index;
+			return info;
+		}
+	}
+
+	return info;
+}
+
 void Level::load(const string& path, int type)
 {
 	this->path = "resources/levels/" + path;

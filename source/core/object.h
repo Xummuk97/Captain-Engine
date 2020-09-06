@@ -24,7 +24,10 @@ public:
 	void setPosition(float x, float y);
 	void move(float x, float y);
 
+	int getUniqueId();
+
 private:
+	int uniqueId;
 	string type, tag;
-	Sprite* sprite;
+	Sprite* sprite = nullptr;
 };

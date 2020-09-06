@@ -6,6 +6,10 @@ Object::Object(const string& type, const string& tag)
 	, tag(tag)
 {
 	Core::luaEngine.getVariable("init")(this);
+
+	static int _uniqueId = 0;
+	_uniqueId++;
+	uniqueId = _uniqueId;
 }
 
 Object::~Object()
@@ -67,4 +71,9 @@ void Object::move(float x, float y)
 	{
 		sprite->move(x * Core::deltaTime * 100.0f, y * Core::deltaTime * 100.0f);
 	}
+}
+
+int Object::getUniqueId()
+{
+	return uniqueId;
 }

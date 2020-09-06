@@ -18,9 +18,9 @@ LuaRef Layer::getName()
 
 int Layer::spawnObject(const string& name, const string& tag)
 {
-	int index = objects.size();
-	objects.push_back(new Object(name, tag));
-	return index;
+	Object* obj = new Object(name, tag);
+	objects.push_back(obj);
+	return obj->getUniqueId();
 }
 
 void Layer::removeObject(int objectIndex)
@@ -62,6 +62,21 @@ int Layer::getObjectIdFromTag(const string& tag)
 	for (size_t i = 0; i < size; i++)
 	{
 		if (objects[i]->getTag() == tag)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+int Layer::getObjectIdFromUniqueId(int uniqueId)
+{
+	size_t size = objects.size();
+
+	for (size_t i = 0; i < size; i++)
+	{
+		if (objects[i]->getUniqueId() == uniqueId)
 		{
 			return i;
 		}

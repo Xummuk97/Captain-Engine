@@ -19,6 +19,7 @@ public:
 	void clear();
 
 	int getObjectIdFromTag(const string& tag);
+	int getObjectIdFromUniqueId(int uniqueId);
 
 private:
 	string name;

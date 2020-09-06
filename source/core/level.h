@@ -21,6 +21,7 @@ public:
 
 	int getObjectIdFromTag(const string& tag);
 	int getMapIdFromName(const string& name);
+	LuaRef getObjectInfoFromUniqueId(int uniqueId);
 
 	void load(const string& path, int type);
 
