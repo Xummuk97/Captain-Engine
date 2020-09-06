@@ -2,7 +2,8 @@ function setup()
 	core:loadTexture("test", "test1.png")
 
 	baseLayer = level:addLayer("base")
-	level:spawnObject(baseLayer, "Player")
+	playerObject = level:spawnObject(baseLayer, "Player")
+	level:getLayer(baseLayer):removeObject(playerObject)
 end
 
 function init(obj)

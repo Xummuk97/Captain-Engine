@@ -27,9 +27,9 @@ LuaRef Level::getLayer(int layerIndex)
 	return Core::luaEngine.createVariable(layers[layerIndex]);
 }
 
-void Level::spawnObject(int layerIndex, const string& objectName)
+int Level::spawnObject(int layerIndex, const string& objectName)
 {
-	layers[layerIndex]->spawnObject(objectName);
+	return layers[layerIndex]->spawnObject(objectName);
 }
 
 void Level::load(const string& path, int type)

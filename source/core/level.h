@@ -16,7 +16,7 @@ public:
 	void removeLayer(int layerIndex);
 	LuaRef getLayer(int layerIndex);
 
-	void spawnObject(int layerIndex, const string& objectName);
+	int spawnObject(int layerIndex, const string& objectName);
 
 	void load(const string& path, int type);
 
