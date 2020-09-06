@@ -150,6 +150,7 @@
     <ClCompile Include="source\core\imgui_engine.cpp" />
     <ClCompile Include="source\core\lua_engine.cpp" />
     <ClCompile Include="source\core\object.cpp" />
+    <ClCompile Include="source\core\types.cpp" />
     <ClCompile Include="source\imgui\imgui-SFML.cpp" />
     <ClCompile Include="source\imgui\imgui.cpp" />
     <ClCompile Include="source\imgui\imgui_demo.cpp" />
@@ -195,8 +196,10 @@
   <ItemGroup>
     <ClInclude Include="source\core\core.h" />
     <ClInclude Include="source\core\imgui_engine.h" />
+    <ClInclude Include="source\core\includes.h" />
     <ClInclude Include="source\core\lua_engine.h" />
     <ClInclude Include="source\core\object.h" />
+    <ClInclude Include="source\core\types.h" />
     <ClInclude Include="source\imgui\imconfig-SFML.h" />
     <ClInclude Include="source\imgui\imconfig.h" />
     <ClInclude Include="source\imgui\imgui-SFML.h" />
