@@ -17,6 +17,7 @@ public:
 	LuaRef getLayer(int layerIndex);
 
 	int spawnObject(int layerIndex, const string& objectName);
+	int spawnObjectTag(int layerIndex, const string& objectName, const string& tag);
 
 	int getObjectIdFromTag(const string& tag);
 	int getMapIdFromName(const string& name);

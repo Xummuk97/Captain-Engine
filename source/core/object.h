@@ -8,7 +8,7 @@ using namespace luabridge;
 class Object
 {
 public:
-	Object(const string& type);
+	Object(const string& type, const string& tag = "default");
 	~Object();
 
 	LuaRef getType();
@@ -25,6 +25,6 @@ public:
 	void move(float x, float y);
 
 private:
-	string type, tag = "default";
+	string type, tag;
 	Sprite* sprite;
 };

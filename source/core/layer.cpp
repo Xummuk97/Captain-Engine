@@ -16,10 +16,10 @@ LuaRef Layer::getName()
 	return Core::luaEngine.createVariable(name);
 }
 
-int Layer::spawnObject(const string& name)
+int Layer::spawnObject(const string& name, const string& tag)
 {
 	int index = objects.size();
-	objects.push_back(new Object(name));
+	objects.push_back(new Object(name, tag));
 	return index;
 }
 

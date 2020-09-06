@@ -1,8 +1,9 @@
 #include <core/object.h>
 #include <core/core.h>
 
-Object::Object(const string& type)
+Object::Object(const string& type, const string& tag)
 	: type(type)
+	, tag(tag)
 {
 	Core::luaEngine.getVariable("init")(this);
 }

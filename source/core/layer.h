@@ -10,7 +10,7 @@ public:
 
 	LuaRef getName();
 
-	int spawnObject(const string& name);
+	int spawnObject(const string& name, const string& tag = "default");
 	void removeObject(int objectIndex);
 
 	void update();

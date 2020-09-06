@@ -2,7 +2,8 @@ function setup()
 	core:loadTexture("test", "test1.png")
 
 	level:addLayer("base")
-	level:spawnObject(level:getMapIdFromName("base"), "Player")
+	level:spawnObjectTag(level:getMapIdFromName("base"), "Player", "Player")
+
 end
 
 function init(obj)
@@ -13,7 +14,7 @@ function init(obj)
 end
 
 function update(layer, obj)
-	if obj:getType() == "Player" then
+	if obj:getType() == "Player" and obj:getTag() == "Player" then
 		if core:isKeyPressed(KB_A) then 
 			obj:move(-1.0, 0.0)
 		elseif core:isKeyPressed(KB_D) then 

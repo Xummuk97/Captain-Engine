@@ -32,6 +32,11 @@ int Level::spawnObject(int layerIndex, const string& objectName)
 	return layers[layerIndex]->spawnObject(objectName);
 }
 
+int Level::spawnObjectTag(int layerIndex, const string& objectName, const string& tag)
+{
+	return layers[layerIndex]->spawnObject(objectName, tag);
+}
+
 int Level::getObjectIdFromTag(const string& tag)
 {
 	int index;
