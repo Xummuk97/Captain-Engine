@@ -1,4 +1,4 @@
-#include "lua_engine.h"
+#include <core/lua_engine.h>
 
 LuaEngine::LuaEngine()
     : luaState(luaL_newstate())
@@ -6,9 +6,9 @@ LuaEngine::LuaEngine()
     luaL_openlibs(luaState);
 }
 
-bool LuaEngine::include(const char* file)
+bool LuaEngine::include(const string& file)
 {
-    return luaL_dofile(luaState, file) == 0;
+    return luaL_dofile(luaState, file.c_str()) == 0;
 }
 
 Namespace LuaEngine::getNamespace()
@@ -16,9 +16,9 @@ Namespace LuaEngine::getNamespace()
     return getGlobalNamespace(luaState);
 }
 
-LuaRef LuaEngine::getVariable(const char* name)
+LuaRef LuaEngine::getVariable(const string& name)
 {
-    LuaRef luaRef = getGlobal(luaState, name);
+    LuaRef luaRef = getGlobal(luaState, name.c_str());
 
     if (luaRef.isNil())
     {
@@ -26,4 +26,9 @@ LuaRef LuaEngine::getVariable(const char* name)
     }
 
     return luaRef;
+}
+
+LuaRef LuaEngine::createTable()
+{
+    return newTable(luaState);
 }
