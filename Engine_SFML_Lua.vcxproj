@@ -107,6 +107,12 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\freetype;C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\imgui;C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\sfml\include;C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +154,8 @@
   <ItemGroup>
     <ClCompile Include="source\core\core.cpp" />
     <ClCompile Include="source\core\imgui_engine.cpp" />
+    <ClCompile Include="source\core\layer.cpp" />
+    <ClCompile Include="source\core\level.cpp" />
     <ClCompile Include="source\core\lua_engine.cpp" />
     <ClCompile Include="source\core\object.cpp" />
     <ClCompile Include="source\core\types.cpp" />
@@ -197,6 +205,8 @@
     <ClInclude Include="source\core\core.h" />
     <ClInclude Include="source\core\imgui_engine.h" />
     <ClInclude Include="source\core\includes.h" />
+    <ClInclude Include="source\core\layer.h" />
+    <ClInclude Include="source\core\level.h" />
     <ClInclude Include="source\core\lua_engine.h" />
     <ClInclude Include="source\core\object.h" />
     <ClInclude Include="source\core\types.h" />

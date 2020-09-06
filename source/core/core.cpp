@@ -1,15 +1,13 @@
 #include <core/core.h>
-#include <core/object.h>
 #include <core/imgui_engine.h>
-
 
 Core*					Core::core;
 RenderWindow*			Core::renderWindow;
 LuaEngine				Core::luaEngine;
 map<string, Texture*>	Core::textures;
-list<Object*>			Core::objects;
 Clock					Core::clock;
 float					Core::deltaTime;
+Level					Core::level;
 
 Core::Core()
 {
@@ -29,6 +27,7 @@ Core::Core()
 	ImGui::SFML::Init(*Core::renderWindow);
 
 	Core::luaEngine.setVariable("core", this);
+	Core::luaEngine.setVariable("level", &Core::level);
 
 	vector<string> buttons =
 	{
@@ -52,8 +51,7 @@ Core::Core()
 	for (size_t i = 0; i < buttons.size(); i++)
 	{
 		transform(buttons[i].begin(), buttons[i].end(), buttons[i].begin(), ::toupper);
-
-		buttons[i].insert(0, "KB_");
+		buttons[i] = "KB_" + buttons[i];
 
 		Core::luaEngine.setVariable(buttons[i], i);
 	}
@@ -132,14 +130,6 @@ void Core::loadTexture(const string& name, const string& file)
 	Core::textures[name] = texture;
 }
 
-void Core::spawn(const string& name, int count)
-{
-	for (int i = 0; i < count; i++)
-	{
-		Core::objects.push_back(new Object(name));
-	}
-}
-
 bool Core::isKeyPressed(int key)
 {
 	return sf::Keyboard::isKeyPressed((sf::Keyboard::Key)key);
@@ -153,7 +143,6 @@ void Core::loadLuaNamespaces()
 			.addFunction("setParam", &Core::setParam)
 			.addFunction("getParam", &Core::getParam)
 			.addFunction("loadTexture", &Core::loadTexture)
-			.addFunction("spawn", &Core::spawn)
 			.addFunction("isKeyPressed", &Core::isKeyPressed)
 		.endClass()
 		.beginClass<Vector2i>("Vector2i")
@@ -191,6 +180,21 @@ void Core::loadLuaNamespaces()
 			.addFunction("drawSprite", &Object::drawSprite)
 			.addFunction("setPosition", &Object::setPosition)
 			.addFunction("move", &Object::move)
+		.endClass()
+		.beginClass<Layer>("Layer")
+			.addConstructor<void (*) (const string&)>()
+			.addFunction("spawnObject", &Layer::spawnObject)
+			.addFunction("removeObject", &Layer::removeObject)
+			.addFunction("clear", &Layer::clear)
+			.addFunction("getName", &Layer::getName)
+		.endClass()
+		.beginClass<Level>("Level")
+			.addConstructor<void (*) (void)>()
+			.addFunction("addLayer", &Level::addLayer)
+			.addFunction("removeLayer", &Level::removeLayer)
+			.addFunction("getLayer", &Level::getLayer)
+			.addFunction("spawnObject", &Level::spawnObject)
+			.addFunction("clear", &Level::clear)
 		.endClass()
 		.beginNamespace("ImGui")
 			.addFunction("beginWindow", &ImGuiEngine::beginWindow)
@@ -233,24 +237,13 @@ void Core::gameProcess()
 	time = Core::clock.restart();
 	Core::deltaTime = time.asSeconds();
 
-	for (Object* obj : objects)
-	{
-		Core::luaEngine.getVariable("update")(obj);
-	}
-
+	Core::level.update();
 	ImGui::SFML::Update(*Core::renderWindow, time);
-
 	Core::luaEngine.getVariable("gui")();
 
 	Core::renderWindow->clear();
-
-	for (Object* obj : objects)
-	{
-		Core::luaEngine.getVariable("draw")(obj);
-	}
-
+	Core::level.draw();
 	ImGui::SFML::Render(*Core::renderWindow);
-
 	Core::renderWindow->display();
 
 	Core::luaEngine.free();

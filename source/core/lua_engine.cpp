@@ -24,7 +24,7 @@ LuaRef LuaEngine::getVariable(const string& name)
     {
         cout << "Variable '" << name << "' was not found!" << endl;
     }
-
+    
     return luaRef;
 }
 

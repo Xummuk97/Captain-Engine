@@ -9,6 +9,10 @@ Object::Object(const string& type)
 
 Object::~Object()
 {
+	if (sprite)
+	{
+		delete sprite;
+	}
 }
 
 LuaRef Object::getType()
