@@ -1,9 +1,10 @@
 #pragma once
 
-extern "C" {
-# include "lua/lua.h"
-# include "lua/lauxlib.h"
-# include "lua/lualib.h"
+extern "C" 
+{
+#include "lua/lua.h"
+#include "lua/lauxlib.h"
+#include "lua/lualib.h"
 }
 
 #include <LuaBridge/LuaBridge.h>
@@ -17,21 +18,26 @@ class LuaEngine
 public:
 	LuaEngine();
 
-	bool include(const char* file);
+	bool include(const string& file);
 	Namespace getNamespace();
 
-	LuaRef getVariable(const char* name);
+	LuaRef getVariable(const string& name);
 
 	template <class T>
-	void setVariable(const char* name, T value)
+	void setVariable(const string& name, T value)
 	{
-		setGlobal(luaState, value, name);
+		setGlobal(luaState, value, name.c_str());
 	}
 
 	template<class T>
-	LuaRef createRef(T value)
+	LuaRef createVariable(T value)
 	{
 		return LuaRef(luaState, value);
+	}
+
+	void free()
+	{
+		lua_gc(luaState, LUA_GCCOLLECT);
 	}
 
 private:
