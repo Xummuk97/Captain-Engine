@@ -88,13 +88,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>SFML_DYNAMIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\sfml\include;C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\imgui;C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\freetype;C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\sfml\include;C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Andrey\source\repos\Engine_SFML_Lua\Engine_SFML_Lua\source\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freetype.lib;opengl32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\core\core.cpp" />
+    <ClCompile Include="source\core\imgui_engine.cpp" />
     <ClCompile Include="source\core\lua_engine.cpp" />
     <ClCompile Include="source\core\object.cpp" />
     <ClCompile Include="source\imgui\imgui-SFML.cpp" />
@@ -193,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\core.h" />
+    <ClInclude Include="source\core\imgui_engine.h" />
     <ClInclude Include="source\core\lua_engine.h" />
     <ClInclude Include="source\core\object.h" />
     <ClInclude Include="source\imgui\imconfig-SFML.h" />

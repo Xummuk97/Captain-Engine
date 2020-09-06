@@ -1,10 +1,7 @@
 #pragma once
-
-#include <SFML/Graphics.hpp>
-#include <core/lua_engine.h>
-#include <list>
-#include <vector>
+#include <core/includes.h>
 #include <core/object.h>
+#include <core/lua_engine.h>
 
 using namespace std;
 using namespace sf;
@@ -46,4 +43,6 @@ private:
 	int windowHeight = 600;
 	int windowFPS = 300;
 	bool windowVerticalSyncEnabled = false;
+
+	Time time;
 };

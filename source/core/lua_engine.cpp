@@ -1,4 +1,4 @@
-#include "lua_engine.h"
+#include <core/lua_engine.h>
 
 LuaEngine::LuaEngine()
     : luaState(luaL_newstate())
@@ -26,4 +26,9 @@ LuaRef LuaEngine::getVariable(const string& name)
     }
 
     return luaRef;
+}
+
+LuaRef LuaEngine::createTable()
+{
+    return newTable(luaState);
 }

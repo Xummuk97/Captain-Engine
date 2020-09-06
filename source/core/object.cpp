@@ -1,4 +1,4 @@
-#include "object.h"
+#include <core/object.h>
 #include <core/core.h>
 
 Object::Object(const string& type)

@@ -1,17 +1,5 @@
 #pragma once
-
-extern "C" 
-{
-#include "lua/lua.h"
-#include "lua/lauxlib.h"
-#include "lua/lualib.h"
-}
-
-#include <LuaBridge/LuaBridge.h>
-#include <iostream>
-
-using namespace luabridge;
-using namespace std;
+#include <core/includes.h>
 
 class LuaEngine
 {
@@ -34,6 +22,8 @@ public:
 	{
 		return LuaRef(luaState, value);
 	}
+
+	LuaRef createTable();
 
 	void free()
 	{

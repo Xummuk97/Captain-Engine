@@ -1,16 +1,5 @@
 #pragma once
-
-#include <SFML/Graphics.hpp>
-#include <string>
-
-extern "C" 
-{
-#include "lua/lua.h"
-#include "lua/lauxlib.h"
-#include "lua/lualib.h"
-}
-
-#include <LuaBridge/LuaBridge.h>
+#include <core/includes.h>
 
 using namespace std;
 using namespace sf;
