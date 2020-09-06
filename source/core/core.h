@@ -46,4 +46,6 @@ private:
 	int windowHeight = 600;
 	int windowFPS = 300;
 	bool windowVerticalSyncEnabled = false;
+
+	Time time;
 };

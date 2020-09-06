@@ -27,3 +27,8 @@ LuaRef LuaEngine::getVariable(const string& name)
 
     return luaRef;
 }
+
+LuaRef LuaEngine::createTable()
+{
+    return newTable(luaState);
+}

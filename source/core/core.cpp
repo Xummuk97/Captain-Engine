@@ -1,7 +1,6 @@
 #include "core.h"
 #include <core/object.h>
-#include "imgui.h"
-#include "imgui-SFML.h"
+#include <core/imgui_engine.h>
 
 Core*					Core::core;
 RenderWindow*			Core::renderWindow;
@@ -191,7 +190,16 @@ void Core::loadLuaNamespaces()
 			.addFunction("drawSprite", &Object::drawSprite)
 			.addFunction("setPosition", &Object::setPosition)
 			.addFunction("move", &Object::move)
-		.endClass();
+		.endClass()
+		.beginNamespace("ImGui")
+			.addFunction("beginWindow", &ImGuiEngine::beginWindow)
+			.addFunction("endWindow", &ImGui::End)
+			.addFunction("beginGroup", &ImGui::BeginGroup)
+			.addFunction("endGroup", &ImGui::EndGroup)
+			.addFunction("button", &ImGuiEngine::button)
+			.addFunction("label", &ImGuiEngine::label)
+			.addFunction("colorEdit4", &ImGuiEngine::colorEdit4)
+		.endNamespace();
 }
 
 void Core::startWindow()
@@ -221,18 +229,17 @@ void Core::eventProcess()
 
 void Core::gameProcess()
 {
-	Core::deltaTime = clock.getElapsedTime().asSeconds();
+	time = Core::clock.restart();
+	Core::deltaTime = time.asSeconds();
 
 	for (Object* obj : objects)
 	{
 		Core::luaEngine.getVariable("update")(obj);
 	}
 
-	ImGui::SFML::Update(*Core::renderWindow, Core::clock.restart());
+	ImGui::SFML::Update(*Core::renderWindow, time);
 
-	ImGui::Begin("Hello, world!");
-	ImGui::Button("Look at this pretty button");
-	ImGui::End();
+	Core::luaEngine.getVariable("gui")();
 
 	Core::renderWindow->clear();
 

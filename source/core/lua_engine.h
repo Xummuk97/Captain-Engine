@@ -35,6 +35,8 @@ public:
 		return LuaRef(luaState, value);
 	}
 
+	LuaRef createTable();
+
 	void free()
 	{
 		lua_gc(luaState, LUA_GCCOLLECT);
