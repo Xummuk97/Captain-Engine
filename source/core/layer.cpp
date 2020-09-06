@@ -54,3 +54,18 @@ void Layer::clear()
 
 	objects.clear();
 }
+
+int Layer::getObjectIdFromTag(const string& tag)
+{
+	size_t size = objects.size();
+
+	for (size_t i = 0; i < size; i++)
+	{
+		if (objects[i]->getTag() == tag)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}

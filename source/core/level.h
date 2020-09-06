@@ -18,6 +18,9 @@ public:
 
 	int spawnObject(int layerIndex, const string& objectName);
 
+	int getObjectIdFromTag(const string& tag);
+	int getMapIdFromName(const string& name);
+
 	void load(const string& path, int type);
 
 	void clear();

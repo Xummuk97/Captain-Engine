@@ -12,6 +12,9 @@ public:
 	~Object();
 
 	LuaRef getType();
+	LuaRef getTag();
+
+	void setTag(const string& tag);
 
 	void setTexture(const string& name);
 	void setTextureRect(int x, int y, int width, int height);
@@ -22,6 +25,6 @@ public:
 	void move(float x, float y);
 
 private:
-	string type;
+	string type, tag = "default";
 	Sprite* sprite;
 };

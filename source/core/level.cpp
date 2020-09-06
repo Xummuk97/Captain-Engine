@@ -32,6 +32,38 @@ int Level::spawnObject(int layerIndex, const string& objectName)
 	return layers[layerIndex]->spawnObject(objectName);
 }
 
+int Level::getObjectIdFromTag(const string& tag)
+{
+	int index;
+
+	for (Layer* layer : layers)
+	{
+		index = layer->getObjectIdFromTag(tag);
+
+		if (index != -1)
+		{
+			return index;
+		}
+	}
+
+	return -1;
+}
+
+int Level::getMapIdFromName(const string& name)
+{
+	size_t size = layers.size();
+
+	for (size_t i = 0; i < size; i++)
+	{
+		if (layers[i]->getName() == name)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
 void Level::load(const string& path, int type)
 {
 	this->path = "resources/levels/" + path;

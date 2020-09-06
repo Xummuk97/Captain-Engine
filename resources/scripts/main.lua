@@ -1,9 +1,8 @@
 function setup()
 	core:loadTexture("test", "test1.png")
 
-	baseLayer = level:addLayer("base")
-	playerObject = level:spawnObject(baseLayer, "Player")
-	level:getLayer(baseLayer):removeObject(playerObject)
+	level:addLayer("base")
+	level:spawnObject(level:getMapIdFromName("base"), "Player")
 end
 
 function init(obj)
@@ -30,6 +29,4 @@ function draw(layer, obj)
 end
 
 function gui()
-	ImGui.beginWindow("Test Window")
-	ImGui.endWindow()
 end

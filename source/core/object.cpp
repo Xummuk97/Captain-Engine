@@ -20,6 +20,16 @@ LuaRef Object::getType()
 	return Core::luaEngine.createVariable(type);
 }
 
+LuaRef Object::getTag()
+{
+	return Core::luaEngine.createVariable(tag);
+}
+
+void Object::setTag(const string& tag)
+{
+	this->tag = tag;
+}
+
 void Object::setTexture(const string& name)
 {
 	sprite = new Sprite();

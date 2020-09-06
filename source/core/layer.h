@@ -18,6 +18,8 @@ public:
 
 	void clear();
 
+	int getObjectIdFromTag(const string& tag);
+
 private:
 	string name;
 	vector<Object*> objects;

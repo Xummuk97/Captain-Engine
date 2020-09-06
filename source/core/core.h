@@ -36,6 +36,8 @@ private:
 	void eventProcess();
 	void gameProcess();
 
+	void consoleProcess();
+
 	string windowTitle = "Captain Engine 1.0";
 	int windowWidth = 800;
 	int windowHeight = 600;

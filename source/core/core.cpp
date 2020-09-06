@@ -175,6 +175,8 @@ void Core::loadLuaNamespaces()
 		.beginClass<Object>("Object")
 			.addConstructor<void (*) (const string&)>()
 			.addFunction("getType", &Object::getType)
+			.addFunction("getTag", &Object::getTag)
+			.addFunction("setTag", &Object::setTag)
 			.addFunction("setTexture", &Object::setTexture)
 			.addFunction("setTextureRect", &Object::setTextureRect)
 			.addFunction("drawSprite", &Object::drawSprite)
@@ -187,6 +189,7 @@ void Core::loadLuaNamespaces()
 			.addFunction("removeObject", &Layer::removeObject)
 			.addFunction("clear", &Layer::clear)
 			.addFunction("getName", &Layer::getName)
+			.addFunction("getObjectIdFromTag", &Layer::getObjectIdFromTag)
 		.endClass()
 		.beginClass<Level>("Level")
 			.addConstructor<void (*) (void)>()
@@ -195,6 +198,8 @@ void Core::loadLuaNamespaces()
 			.addFunction("getLayer", &Level::getLayer)
 			.addFunction("spawnObject", &Level::spawnObject)
 			.addFunction("clear", &Level::clear)
+			.addFunction("getObjectIdFromTag", &Level::getObjectIdFromTag)
+			.addFunction("getMapIdFromName", &Level::getMapIdFromName)
 		.endClass()
 		.beginNamespace("ImGui")
 			.addFunction("beginWindow", &ImGuiEngine::beginWindow)
@@ -240,6 +245,7 @@ void Core::gameProcess()
 	Core::level.update();
 	ImGui::SFML::Update(*Core::renderWindow, time);
 	Core::luaEngine.getVariable("gui")();
+	consoleProcess();
 
 	Core::renderWindow->clear();
 	Core::level.draw();
@@ -247,4 +253,21 @@ void Core::gameProcess()
 	Core::renderWindow->display();
 
 	Core::luaEngine.free();
+}
+
+void Core::consoleProcess()
+{
+	static char command[256], log[1024];
+
+	ImGui::Begin("Console");
+	ImGui::InputTextMultiline("Log", log, sizeof(log));
+	ImGui::InputText("Command", command, sizeof(command));
+	if (ImGui::Button("Execute"))
+	{
+		Core::luaEngine.eval(command);
+		sprintf_s(command, sizeof(command), "%s\n", command);
+		strcat_s(log, command);
+		command[0] = '\0';
+	}
+	ImGui::End();
 }
