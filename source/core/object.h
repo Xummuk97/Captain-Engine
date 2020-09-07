@@ -1,5 +1,6 @@
 #pragma once
 #include <core/includes.h>
+#include <core/component.h>
 
 using namespace std;
 using namespace sf;
@@ -16,18 +17,19 @@ public:
 
 	void setTag(const string& tag);
 
-	void setTexture(const string& name);
-	void setTextureRect(int x, int y, int width, int height);
-
-	void drawSprite();
-
-	void setPosition(float x, float y);
-	void move(float x, float y);
-
 	int getUniqueId();
+
+	void addComponent(const string& name);
+	LuaRef getComponentDrawable();
+
+	void update();
+	void draw();
 
 private:
 	int uniqueId;
 	string type, tag;
 	Sprite* sprite = nullptr;
+
+	list<Component*> components;
+	ComponentDrawable* componentDrawable;
 };

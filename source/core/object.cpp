@@ -35,45 +35,40 @@ void Object::setTag(const string& tag)
 	this->tag = tag;
 }
 
-void Object::setTexture(const string& name)
-{
-	sprite = new Sprite();
-	sprite->setTexture(*Core::textures[name]);
-}
-
-void Object::setTextureRect(int x, int y, int width, int height)
-{
-	if (sprite)
-	{
-		sprite->setTextureRect({ x, y, width, height });
-	}
-}
-
-void Object::drawSprite()
-{
-	if (sprite)
-	{
-		Core::renderWindow->draw(*sprite);
-	}
-}
-
-void Object::setPosition(float x, float y)
-{
-	if (sprite)
-	{
-		sprite->setPosition(x, y);
-	}
-}
-
-void Object::move(float x, float y)
-{
-	if (sprite)
-	{
-		sprite->move(x * Core::deltaTime * 100.0f, y * Core::deltaTime * 100.0f);
-	}
-}
-
 int Object::getUniqueId()
 {
 	return uniqueId;
+}
+
+void Object::addComponent(const string& name)
+{
+	if (name == "componentDrawable")
+	{
+		componentDrawable = new ComponentDrawable;
+	}
+	else
+	{
+		components.push_back(new Component(name));
+	}
+}
+
+LuaRef Object::getComponentDrawable()
+{
+	return Core::luaEngine.createVariable(componentDrawable);
+}
+
+void Object::update()
+{
+	for (Component* component : components)
+	{
+		component->update(this, ComponentType_Object);
+	}
+}
+
+void Object::draw()
+{
+	if (componentDrawable)
+	{
+		componentDrawable->draw();
+	}
 }

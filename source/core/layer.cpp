@@ -33,7 +33,7 @@ void Layer::update()
 {
 	for (Object* object : objects)
 	{
-		Core::luaEngine.getVariable("update")(this, object);
+		object->update();
 	}
 }
 
@@ -41,7 +41,7 @@ void Layer::draw()
 {
 	for (Object* object : objects)
 	{
-		Core::luaEngine.getVariable("draw")(this, object);
+		object->draw();
 	}
 }
 

@@ -172,17 +172,21 @@ void Core::loadLuaNamespaces()
 			.addProperty("top", &FloatRect::top)
 			.addProperty("width", &FloatRect::width)
 		.endClass()
+		.beginClass<ComponentDrawable>("ComponentDrawable")
+			.addConstructor<void (*) (void)>()
+			.addFunction("setTexture", &ComponentDrawable::setTexture)
+			.addFunction("setTextureRect", &ComponentDrawable::setTextureRect)
+			.addFunction("setPosition", &ComponentDrawable::setPosition)
+			.addFunction("move", &ComponentDrawable::move)
+		.endClass()
 		.beginClass<Object>("Object")
 			.addConstructor<void (*) (const string&)>()
 			.addFunction("getType", &Object::getType)
 			.addFunction("getTag", &Object::getTag)
 			.addFunction("setTag", &Object::setTag)
 			.addFunction("getUniqueId", &Object::getUniqueId)
-			.addFunction("setTexture", &Object::setTexture)
-			.addFunction("setTextureRect", &Object::setTextureRect)
-			.addFunction("drawSprite", &Object::drawSprite)
-			.addFunction("setPosition", &Object::setPosition)
-			.addFunction("move", &Object::move)
+			.addFunction("addComponent", &Object::addComponent)
+			.addFunction("getComponentDrawable", &Object::getComponentDrawable)
 		.endClass()
 		.beginClass<Layer>("Layer")
 			.addConstructor<void (*) (const string&)>()
@@ -246,7 +250,7 @@ void Core::gameProcess()
 
 	Core::level.update();
 	ImGui::SFML::Update(*Core::renderWindow, time);
-	Core::luaEngine.getVariable("gui")();
+	Core::luaEngine.getVariable("onGUI")();
 	consoleProcess();
 
 	Core::renderWindow->clear();

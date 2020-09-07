@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\core\component.cpp" />
     <ClCompile Include="source\core\core.cpp" />
     <ClCompile Include="source\core\imgui_engine.cpp" />
     <ClCompile Include="source\core\layer.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="source\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\core\component.h" />
     <ClInclude Include="source\core\core.h" />
     <ClInclude Include="source\core\imgui_engine.h" />
     <ClInclude Include="source\core\includes.h" />
