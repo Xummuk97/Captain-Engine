@@ -1,14 +1,23 @@
 #include <core/object.h>
 #include <core/core.h>
 
-Object::Object(const string& type)
+Object::Object(const string& type, const string& tag)
 	: type(type)
+	, tag(tag)
 {
-	Core::luaEngine.getVariable("init")(this);
+	static int _uniqueId = 0;
+	_uniqueId++;
+	uniqueId = _uniqueId;
+
+	Core::luaEngine.getVariable("onObjectCreate")(this);
 }
 
 Object::~Object()
 {
+	if (sprite)
+	{
+		delete sprite;
+	}
 }
 
 LuaRef Object::getType()
@@ -16,40 +25,50 @@ LuaRef Object::getType()
 	return Core::luaEngine.createVariable(type);
 }
 
-void Object::setTexture(const string& name)
+LuaRef Object::getTag()
 {
-	sprite = new Sprite();
-	sprite->setTexture(*Core::textures[name]);
+	return Core::luaEngine.createVariable(tag);
 }
 
-void Object::setTextureRect(int x, int y, int width, int height)
+void Object::setTag(const string& tag)
 {
-	if (sprite)
+	this->tag = tag;
+}
+
+int Object::getUniqueId()
+{
+	return uniqueId;
+}
+
+void Object::addComponent(const string& name)
+{
+	if (name == "componentDrawable")
 	{
-		sprite->setTextureRect({ x, y, width, height });
+		componentDrawable = new ComponentDrawable;
+	}
+	else
+	{
+		components.push_back(new Component(name));
 	}
 }
 
-void Object::drawSprite()
+LuaRef Object::getComponentDrawable()
 {
-	if (sprite)
+	return Core::luaEngine.createVariable(componentDrawable);
+}
+
+void Object::update()
+{
+	for (Component* component : components)
 	{
-		Core::renderWindow->draw(*sprite);
+		component->update(this, ComponentType_Object);
 	}
 }
 
-void Object::setPosition(float x, float y)
+void Object::draw()
 {
-	if (sprite)
+	if (componentDrawable)
 	{
-		sprite->setPosition(x, y);
-	}
-}
-
-void Object::move(float x, float y)
-{
-	if (sprite)
-	{
-		sprite->move(x * Core::deltaTime * 100.0f, y * Core::deltaTime * 100.0f);
+		componentDrawable->draw();
 	}
 }

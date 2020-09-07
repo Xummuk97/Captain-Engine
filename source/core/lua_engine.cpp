@@ -24,11 +24,21 @@ LuaRef LuaEngine::getVariable(const string& name)
     {
         cout << "Variable '" << name << "' was not found!" << endl;
     }
-
+    
     return luaRef;
 }
 
 LuaRef LuaEngine::createTable()
 {
     return newTable(luaState);
+}
+
+void LuaEngine::free()
+{
+    lua_gc(luaState, LUA_GCCOLLECT);
+}
+
+void LuaEngine::eval(const string& text)
+{
+    luaL_dostring(luaState, text.c_str());
 }

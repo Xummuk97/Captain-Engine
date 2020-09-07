@@ -1,7 +1,7 @@
 #pragma once
 #include <core/includes.h>
-#include <core/object.h>
 #include <core/lua_engine.h>
+#include <core/level.h>
 
 using namespace std;
 using namespace sf;
@@ -19,17 +19,15 @@ public:
 
 	void loadTexture(const string& name, const string& file);
 
-	void spawn(const string& name, int count);
-
 	bool isKeyPressed(int key);
 
 	static Core* core;
 	static RenderWindow* renderWindow;
 	static LuaEngine luaEngine;
 	static map<string, Texture*> textures;
-	static list<Object*> objects;
 	static Clock clock;
 	static float deltaTime;
+	static Level level;
 
 private:
 	void loadLuaNamespaces();
@@ -37,6 +35,8 @@ private:
 
 	void eventProcess();
 	void gameProcess();
+
+	void consoleProcess();
 
 	string windowTitle = "Captain Engine 1.0";
 	int windowWidth = 800;

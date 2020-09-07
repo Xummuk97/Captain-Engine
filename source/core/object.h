@@ -1,5 +1,6 @@
 #pragma once
 #include <core/includes.h>
+#include <core/component.h>
 
 using namespace std;
 using namespace sf;
@@ -8,20 +9,27 @@ using namespace luabridge;
 class Object
 {
 public:
-	Object(const string& type);
+	Object(const string& type, const string& tag = "default");
 	~Object();
 
 	LuaRef getType();
+	LuaRef getTag();
 
-	void setTexture(const string& name);
-	void setTextureRect(int x, int y, int width, int height);
+	void setTag(const string& tag);
 
-	void drawSprite();
+	int getUniqueId();
 
-	void setPosition(float x, float y);
-	void move(float x, float y);
+	void addComponent(const string& name);
+	LuaRef getComponentDrawable();
+
+	void update();
+	void draw();
 
 private:
-	string type;
-	Sprite* sprite;
+	int uniqueId;
+	string type, tag;
+	Sprite* sprite = nullptr;
+
+	list<Component*> components;
+	ComponentDrawable* componentDrawable;
 };

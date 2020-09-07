@@ -25,10 +25,8 @@ public:
 
 	LuaRef createTable();
 
-	void free()
-	{
-		lua_gc(luaState, LUA_GCCOLLECT);
-	}
+	void free();
+	void eval(const string& text);
 
 private:
 	lua_State* luaState;
