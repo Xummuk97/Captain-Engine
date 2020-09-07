@@ -37,21 +37,25 @@ int Level::spawnObjectTag(int layerIndex, const string& objectName, const string
 	return layers[layerIndex]->spawnObject(objectName, tag);
 }
 
-int Level::getObjectIdFromTag(const string& tag)
+LuaRef Level::getObjectInfoFromTag(const string& tag)
 {
-	int index;
+	LuaRef info = Core::luaEngine.createTable();
 
-	for (Layer* layer : layers)
+	int index;
+	size_t size = layers.size();
+
+	for (size_t i = 0; i < size; i++)
 	{
-		index = layer->getObjectIdFromTag(tag);
+		index = layers[i]->getObjectIdFromTag(tag);
 
 		if (index != -1)
 		{
-			return index;
+			getObjectInfoFromObjectId(info, i, index);
+			return info;
 		}
 	}
 
-	return -1;
+	return info;
 }
 
 int Level::getMapIdFromName(const string& name)
@@ -82,8 +86,7 @@ LuaRef Level::getObjectInfoFromUniqueId(int uniqueId)
 
 		if (index != -1)
 		{
-			info["layer"] = i;
-			info["object"] = index;
+			getObjectInfoFromObjectId(info, i, index);
 			return info;
 		}
 	}
@@ -131,4 +134,10 @@ void Level::draw()
 
 void Level::loadFromTiled()
 {
+}
+
+void Level::getObjectInfoFromObjectId(LuaRef& value, int layer, int object)
+{
+	value["layer"] = layer;
+	value["object"] = object;
 }

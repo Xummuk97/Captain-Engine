@@ -1,12 +1,20 @@
-function setup()
+function onEngineSetup()
 	core:loadTexture("test", "test1.png")
 
 	level:addLayer("base")
-	level:spawnObjectTag(level:getMapIdFromName("base"), "Player", "Player")
+	base = level:getMapIdFromName("base")
+	uid = level:spawnObjectTag(base, "Player", "Player")
 
+	level:spawnObject(base, "Player")
+	level:spawnObject(base, "Player")
+	level:spawnObject(base, "Player")
+
+	info = level:getObjectInfoFromUniqueId(uid)
+
+	level:getLayer(info["layer"]):removeObject(info["object"])
 end
 
-function init(obj)
+function onObjectCreate(obj)
 	if obj:getType() == "Player" then
 		obj:setTexture("test")
 		obj:setTextureRect(0, 0, 32, 32)

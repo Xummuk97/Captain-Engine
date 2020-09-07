@@ -56,7 +56,7 @@ Core::Core()
 		Core::luaEngine.setVariable(buttons[i], i);
 	}
 	
-	Core::luaEngine.getVariable("setup")();
+	Core::luaEngine.getVariable("onEngineSetup")();
 
 	startWindow();
 }
@@ -190,7 +190,6 @@ void Core::loadLuaNamespaces()
 			.addFunction("removeObject", &Layer::removeObject)
 			.addFunction("clear", &Layer::clear)
 			.addFunction("getName", &Layer::getName)
-			.addFunction("getObjectIdFromTag", &Layer::getObjectIdFromTag)
 		.endClass()
 		.beginClass<Level>("Level")
 			.addConstructor<void (*) (void)>()
@@ -200,8 +199,8 @@ void Core::loadLuaNamespaces()
 			.addFunction("spawnObject", &Level::spawnObject)
 			.addFunction("spawnObjectTag", &Level::spawnObjectTag)
 			.addFunction("clear", &Level::clear)
-			.addFunction("getObjectIdFromTag", &Level::getObjectIdFromTag)
 			.addFunction("getMapIdFromName", &Level::getMapIdFromName)
+			.addFunction("getObjectInfoFromTag", &Level::getObjectInfoFromTag)
 			.addFunction("getObjectInfoFromUniqueId", &Level::getObjectInfoFromUniqueId)
 		.endClass()
 		.beginNamespace("ImGui")

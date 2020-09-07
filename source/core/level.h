@@ -19,8 +19,8 @@ public:
 	int spawnObject(int layerIndex, const string& objectName);
 	int spawnObjectTag(int layerIndex, const string& objectName, const string& tag);
 
-	int getObjectIdFromTag(const string& tag);
 	int getMapIdFromName(const string& name);
+	LuaRef getObjectInfoFromTag(const string& tag);
 	LuaRef getObjectInfoFromUniqueId(int uniqueId);
 
 	void load(const string& path, int type);
@@ -32,6 +32,8 @@ public:
 
 private:
 	void loadFromTiled();
+
+	void getObjectInfoFromObjectId(LuaRef& value, int layer, int object);
 
 	string path;
 	vector<Layer*> layers;

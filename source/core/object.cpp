@@ -5,11 +5,11 @@ Object::Object(const string& type, const string& tag)
 	: type(type)
 	, tag(tag)
 {
-	Core::luaEngine.getVariable("init")(this);
-
 	static int _uniqueId = 0;
 	_uniqueId++;
 	uniqueId = _uniqueId;
+
+	Core::luaEngine.getVariable("onObjectCreate")(this);
 }
 
 Object::~Object()
