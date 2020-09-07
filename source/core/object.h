@@ -6,6 +6,8 @@ using namespace std;
 using namespace sf;
 using namespace luabridge;
 
+#define INVALID_OBJECT -1
+
 class Object
 {
 public:

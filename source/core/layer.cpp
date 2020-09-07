@@ -67,7 +67,7 @@ int Layer::getObjectIdFromTag(const string& tag)
 		}
 	}
 
-	return -1;
+	return INVALID_OBJECT;
 }
 
 int Layer::getObjectIdFromUniqueId(int uniqueId)
@@ -82,5 +82,5 @@ int Layer::getObjectIdFromUniqueId(int uniqueId)
 		}
 	}
 
-	return -1;
+	return INVALID_OBJECT;
 }

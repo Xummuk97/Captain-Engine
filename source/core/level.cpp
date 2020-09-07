@@ -39,8 +39,6 @@ int Level::spawnObjectTag(int layerIndex, const string& objectName, const string
 
 LuaRef Level::getObjectInfoFromTag(const string& tag)
 {
-	LuaRef info = Core::luaEngine.createTable();
-
 	int index;
 	size_t size = layers.size();
 
@@ -48,14 +46,13 @@ LuaRef Level::getObjectInfoFromTag(const string& tag)
 	{
 		index = layers[i]->getObjectIdFromTag(tag);
 
-		if (index != -1)
+		if (index != INVALID_OBJECT)
 		{
-			getObjectInfoFromObjectId(info, i, index);
-			return info;
+			return getObjectInfoFromObjectId(i, index);
 		}
 	}
 
-	return info;
+	return Core::luaEngine.createVariable(INVALID_OBJECT);
 }
 
 int Level::getMapIdFromName(const string& name)
@@ -70,13 +67,11 @@ int Level::getMapIdFromName(const string& name)
 		}
 	}
 
-	return -1;
+	return INVALID_OBJECT;
 }
 
 LuaRef Level::getObjectInfoFromUniqueId(int uniqueId)
 {
-	LuaRef info = Core::luaEngine.createTable();
-
 	size_t size = layers.size();
 	int index;
 
@@ -84,14 +79,13 @@ LuaRef Level::getObjectInfoFromUniqueId(int uniqueId)
 	{
 		index = layers[i]->getObjectIdFromUniqueId(uniqueId);
 
-		if (index != -1)
+		if (index != INVALID_OBJECT)
 		{
-			getObjectInfoFromObjectId(info, i, index);
-			return info;
+			return getObjectInfoFromObjectId(i, index);
 		}
 	}
 
-	return info;
+	return Core::luaEngine.createVariable(INVALID_OBJECT);
 }
 
 void Level::load(const string& path, int type)
@@ -136,8 +130,10 @@ void Level::loadFromTiled()
 {
 }
 
-void Level::getObjectInfoFromObjectId(LuaRef& value, int layer, int object)
+LuaRef Level::getObjectInfoFromObjectId(int layer, int object)
 {
+	LuaRef value = Core::luaEngine.createTable();
 	value["layer"] = layer;
 	value["object"] = object;
+	return value;
 }

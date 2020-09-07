@@ -33,7 +33,7 @@ public:
 private:
 	void loadFromTiled();
 
-	void getObjectInfoFromObjectId(LuaRef& value, int layer, int object);
+	LuaRef getObjectInfoFromObjectId(int layer, int object);
 
 	string path;
 	vector<Layer*> layers;

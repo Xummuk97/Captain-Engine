@@ -29,6 +29,8 @@ Core::Core()
 	Core::luaEngine.setVariable("core", this);
 	Core::luaEngine.setVariable("level", &Core::level);
 
+	Core::luaEngine.setVariable("INVALID_OBJECT", INVALID_OBJECT);
+
 	vector<string> buttons =
 	{
 		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
