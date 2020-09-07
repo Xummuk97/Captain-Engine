@@ -11,9 +11,13 @@ end
 function onEngineSetup()
 	core:loadTexture("test", "test1.png")
 
-	level:addLayer("base")
-	base = level:getMapIdFromName("base")
-	level:spawnObjectTag(base, "Player", "Player")
+	base = level:addLayer("base")
+	new = level:addLayer("new")
+
+	uid = level:spawnObject(base, "Player")
+	playerId = level:getObjectInfoFromUniqueId(uid)["object"]
+
+	level:swapObjectLayer(playerId, base, new)
 end
 
 function onObjectCreate(obj)

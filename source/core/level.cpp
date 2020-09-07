@@ -128,6 +128,11 @@ void Level::draw()
 	}
 }
 
+void Level::swapObjectLayer(int objectIndex, int layerIndex1, int layerIndex2)
+{
+	layers[layerIndex1]->swapObjectLayer(objectIndex, layers[layerIndex2]);
+}
+
 void Level::loadFromTiled()
 {
 }

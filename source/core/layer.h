@@ -23,6 +23,8 @@ namespace captain
 		int getObjectIdFromTag(const string& tag);
 		int getObjectIdFromUniqueId(int uniqueId);
 
+		void swapObjectLayer(int objectIndex, Layer* layer);
+
 	private:
 		string name;
 		vector<Object*> objects;

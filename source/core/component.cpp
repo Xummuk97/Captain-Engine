@@ -48,12 +48,12 @@ void ComponentDrawable::setTextureRect(int x, int y, int width, int height)
 
 void ComponentDrawable::setPosition(float x, float y)
 {
-	sprite.setPosition(x * Core::deltaTime * 100.0f, y * Core::deltaTime * 100.0f);
+	sprite.setPosition(x, y);
 }
 
 void ComponentDrawable::move(float x, float y)
 {
-	sprite.move(x, y);
+	sprite.move(x * Core::deltaTime * 100.0f, y * Core::deltaTime * 100.0f);
 }
 
 void ComponentDrawable::draw()

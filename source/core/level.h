@@ -32,6 +32,8 @@ namespace captain
 		void update();
 		void draw();
 
+		void swapObjectLayer(int objectIndex, int layerIndex1, int layerIndex2);
+
 	private:
 		void loadFromTiled();
 

@@ -3,6 +3,10 @@
 
 using namespace captain;
 
+Object::Object()
+{
+}
+
 Object::Object(const string& type, const string& tag)
 	: type(type)
 	, tag(tag)

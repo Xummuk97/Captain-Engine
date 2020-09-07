@@ -13,6 +13,7 @@ namespace captain
 	class Object
 	{
 	public:
+		Object();
 		Object(const string& type, const string& tag = "default");
 		~Object();
 

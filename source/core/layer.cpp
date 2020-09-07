@@ -86,3 +86,11 @@ int Layer::getObjectIdFromUniqueId(int uniqueId)
 
 	return INVALID_OBJECT;
 }
+
+void Layer::swapObjectLayer(int objectIndex, Layer* layer)
+{
+	Object* object = new Object;
+	swap(objects[objectIndex], object);
+	layer->objects.push_back(object);
+	removeObject(objectIndex);
+}
