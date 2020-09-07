@@ -2,6 +2,8 @@
 #include <core/core.h>
 #include <core/object.h>
 
+using namespace captain;
+
 Component::Component(const string& name)
 	: name(name)
 {

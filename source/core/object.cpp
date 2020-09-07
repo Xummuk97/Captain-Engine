@@ -1,6 +1,8 @@
 #include <core/object.h>
 #include <core/core.h>
 
+using namespace captain;
+
 Object::Object(const string& type, const string& tag)
 	: type(type)
 	, tag(tag)

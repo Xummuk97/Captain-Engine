@@ -1,6 +1,8 @@
 #include <core/imgui_engine.h>
 #include <core/core.h>
 
+using namespace captain;
+
 void ImGuiEngine::beginWindow(const string& text)
 {
 	ImGui::Begin(text.c_str());

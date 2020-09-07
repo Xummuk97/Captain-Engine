@@ -3,38 +3,41 @@
 #include <core/includes.h>
 #include <core/layer.h>
 
-#define LEVEL_TILED 0
-#define LEVEL_CAPTAIN 1
-
-class Level
+namespace captain
 {
-public:
-	Level();
-	~Level();
+	#define LEVEL_TILED 0
+	#define LEVEL_CAPTAIN 1
 
-	int addLayer(const string& name);
-	void removeLayer(int layerIndex);
-	LuaRef getLayer(int layerIndex);
+	class Level
+	{
+	public:
+		Level();
+		~Level();
 
-	int spawnObject(int layerIndex, const string& objectName);
-	int spawnObjectTag(int layerIndex, const string& objectName, const string& tag);
+		int addLayer(const string& name);
+		void removeLayer(int layerIndex);
+		LuaRef getLayer(int layerIndex);
 
-	int getMapIdFromName(const string& name);
-	LuaRef getObjectInfoFromTag(const string& tag);
-	LuaRef getObjectInfoFromUniqueId(int uniqueId);
+		int spawnObject(int layerIndex, const string& objectName);
+		int spawnObjectTag(int layerIndex, const string& objectName, const string& tag);
 
-	void load(const string& path, int type);
+		int getMapIdFromName(const string& name);
+		LuaRef getObjectInfoFromTag(const string& tag);
+		LuaRef getObjectInfoFromUniqueId(int uniqueId);
 
-	void clear();
+		void load(const string& path, int type);
 
-	void update();
-	void draw();
+		void clear();
 
-private:
-	void loadFromTiled();
+		void update();
+		void draw();
 
-	LuaRef getObjectInfoFromObjectId(int layer, int object);
+	private:
+		void loadFromTiled();
 
-	string path;
-	vector<Layer*> layers;
-};
+		LuaRef getObjectInfoFromObjectId(int layer, int object);
+
+		string path;
+		vector<Layer*> layers;
+	};
+}

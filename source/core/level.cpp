@@ -1,6 +1,8 @@
 #include "level.h"
 #include <core/core.h>
 
+using namespace captain;
+
 Level::Level()
 {
 }

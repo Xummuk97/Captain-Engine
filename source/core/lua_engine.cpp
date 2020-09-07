@@ -1,5 +1,7 @@
 #include <core/lua_engine.h>
 
+using namespace captain;
+
 LuaEngine::LuaEngine()
     : luaState(luaL_newstate())
 {

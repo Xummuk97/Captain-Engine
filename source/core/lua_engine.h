@@ -1,33 +1,36 @@
 #pragma once
 #include <core/includes.h>
 
-class LuaEngine
+namespace captain
 {
-public:
-	LuaEngine();
-
-	bool include(const string& file);
-	Namespace getNamespace();
-
-	LuaRef getVariable(const string& name);
-
-	template <class T>
-	void setVariable(const string& name, T value)
+	class LuaEngine
 	{
-		setGlobal(luaState, value, name.c_str());
-	}
+	public:
+		LuaEngine();
 
-	template<class T>
-	LuaRef createVariable(T value)
-	{
-		return LuaRef(luaState, value);
-	}
+		bool include(const string& file);
+		Namespace getNamespace();
 
-	LuaRef createTable();
+		LuaRef getVariable(const string& name);
 
-	void free();
-	void eval(const string& text);
+		template <class T>
+		void setVariable(const string& name, T value)
+		{
+			setGlobal(luaState, value, name.c_str());
+		}
 
-private:
-	lua_State* luaState;
-};
+		template<class T>
+		LuaRef createVariable(T value)
+		{
+			return LuaRef(luaState, value);
+		}
+
+		LuaRef createTable();
+
+		void free();
+		void eval(const string& text);
+
+	private:
+		lua_State* luaState;
+	};
+}

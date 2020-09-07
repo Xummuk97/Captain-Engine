@@ -1,39 +1,42 @@
 #pragma once
 #include <core/includes.h>
 
-enum
+namespace captain
 {
-	ComponentType_Object
-};
+	enum
+	{
+		ComponentType_Object
+	};
 
-class Component
-{
-public:
-	Component(const string& name = "");
-	~Component();
+	class Component
+	{
+	public:
+		Component(const string& name = "");
+		~Component();
 
-	virtual void update(void* obj, int componentType);
+		virtual void update(void* obj, int componentType);
 
-	string getName();
+		string getName();
 
-private:
-	string name;
-};
+	private:
+		string name;
+	};
 
-class ComponentDrawable : public Component
-{
-public:
-	ComponentDrawable();
-	~ComponentDrawable();
+	class ComponentDrawable : public Component
+	{
+	public:
+		ComponentDrawable();
+		~ComponentDrawable();
 
-	void setTexture(const string& name);
-	void setTextureRect(int x, int y, int width, int height);
+		void setTexture(const string& name);
+		void setTextureRect(int x, int y, int width, int height);
 
-	void setPosition(float x, float y);
-	void move(float x, float y);
+		void setPosition(float x, float y);
+		void move(float x, float y);
 
-	void draw();
+		void draw();
 
-private:
-	Sprite sprite;
-};
+	private:
+		Sprite sprite;
+	};
+}

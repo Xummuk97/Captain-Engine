@@ -1,6 +1,8 @@
 #include "layer.h"
 #include <core/core.h>
 
+using namespace captain;
+
 Layer::Layer(const string& name)
 	: name(name)
 {

@@ -3,6 +3,6 @@
 
 int main() 
 {
-	Core core;
+	captain::Core core;
 	return 0;
 }

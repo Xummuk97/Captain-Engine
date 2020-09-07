@@ -6,38 +6,41 @@ using namespace std;
 using namespace sf;
 using namespace luabridge;
 
-#define INVALID_OBJECT -1
-
-class Object
+namespace captain
 {
-public:
-	Object(const string& type, const string& tag = "default");
-	~Object();
+	#define INVALID_OBJECT -1
 
-	LuaRef getType();
-	LuaRef getTag();
+	class Object
+	{
+	public:
+		Object(const string& type, const string& tag = "default");
+		~Object();
 
-	void setTag(const string& tag);
+		LuaRef getType();
+		LuaRef getTag();
 
-	int getUniqueId();
+		void setTag(const string& tag);
 
-	void addComponent(const string& name);
-	LuaRef getComponent(const string& name);
-	bool hasComponent(const string& name);
-	bool hasCustomComponent(const string& name);
+		int getUniqueId();
 
-	void update();
-	void draw();
+		void addComponent(const string& name);
+		LuaRef getComponent(const string& name);
+		bool hasComponent(const string& name);
+		bool hasCustomComponent(const string& name);
 
-	void setVariable(const string& name, LuaRef value);
-	LuaRef& getVariable(const string& name);
+		void update();
+		void draw();
 
-private:
-	int uniqueId;
-	string type, tag;
+		void setVariable(const string& name, LuaRef value);
+		LuaRef& getVariable(const string& name);
 
-	map<string, Component*> components;
-	list<Component*> customComponents;
+	private:
+		int uniqueId;
+		string type, tag;
 
-	map<string, LuaRef*> variables;
-};
+		map<string, Component*> components;
+		list<Component*> customComponents;
+
+		map<string, LuaRef*> variables;
+	};
+}

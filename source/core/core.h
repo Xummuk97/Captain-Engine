@@ -6,43 +6,46 @@
 using namespace std;
 using namespace sf;
 
-#define LUA_MAIN_FILE "resources/scripts/main.lua"
-
-class Core
+namespace captain
 {
-public:
-	Core();
-	~Core();
+	#define LUA_MAIN_FILE "resources/scripts/main.lua"
 
-	void setParam(const string& name, LuaRef value);
-	LuaRef getParam(const string& name);
+	class Core
+	{
+	public:
+		Core();
+		~Core();
 
-	void loadTexture(const string& name, const string& file);
+		void setParam(const string& name, LuaRef value);
+		LuaRef getParam(const string& name);
 
-	bool isKeyPressed(int key);
+		void loadTexture(const string& name, const string& file);
 
-	static Core* core;
-	static RenderWindow* renderWindow;
-	static LuaEngine luaEngine;
-	static map<string, Texture*> textures;
-	static Clock clock;
-	static float deltaTime;
-	static Level level;
+		bool isKeyPressed(int key);
 
-private:
-	void loadLuaNamespaces();
-	void startWindow();
+		static Core* core;
+		static RenderWindow* renderWindow;
+		static LuaEngine luaEngine;
+		static map<string, Texture*> textures;
+		static Clock clock;
+		static float deltaTime;
+		static Level level;
 
-	void eventProcess();
-	void gameProcess();
+	private:
+		void loadLuaNamespaces();
+		void startWindow();
 
-	void consoleProcess();
+		void eventProcess();
+		void gameProcess();
 
-	string windowTitle = "Captain Engine 1.0";
-	int windowWidth = 800;
-	int windowHeight = 600;
-	int windowFPS = 300;
-	bool windowVerticalSyncEnabled = false;
+		void consoleProcess();
 
-	Time time;
-};
+		string windowTitle = "Captain Engine 1.0";
+		int windowWidth = 800;
+		int windowHeight = 600;
+		int windowFPS = 300;
+		bool windowVerticalSyncEnabled = false;
+
+		Time time;
+	};
+}

@@ -2,26 +2,29 @@
 #include <core/includes.h>
 #include <core/object.h>
 
-class Layer
+namespace captain
 {
-public:
-	Layer(const string& name);
-	~Layer();
+	class Layer
+	{
+	public:
+		Layer(const string& name);
+		~Layer();
 
-	LuaRef getName();
+		LuaRef getName();
 
-	int spawnObject(const string& name, const string& tag = "default");
-	void removeObject(int objectIndex);
+		int spawnObject(const string& name, const string& tag = "default");
+		void removeObject(int objectIndex);
 
-	void update();
-	void draw();
+		void update();
+		void draw();
 
-	void clear();
+		void clear();
 
-	int getObjectIdFromTag(const string& tag);
-	int getObjectIdFromUniqueId(int uniqueId);
+		int getObjectIdFromTag(const string& tag);
+		int getObjectIdFromUniqueId(int uniqueId);
 
-private:
-	string name;
-	vector<Object*> objects;
-};
+	private:
+		string name;
+		vector<Object*> objects;
+	};
+}

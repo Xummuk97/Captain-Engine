@@ -1,6 +1,8 @@
 #include <core/core.h>
 #include <core/imgui_engine.h>
 
+using namespace captain;
+
 Core*					Core::core;
 RenderWindow*			Core::renderWindow;
 LuaEngine				Core::luaEngine;
