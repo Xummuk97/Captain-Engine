@@ -12,13 +12,6 @@ function onEngineSetup()
 	level:addLayer("base")
 	base = level:getMapIdFromName("base")
 	level:spawnObjectTag(base, "Player", "Player")
-
-	info = level:getObjectInfoFromTag("Abc")
-
-	if info ~= INVALID_OBJECT then
-		print(info["layer"])
-		print(info["object"])
-	end
 end
 
 function onObjectCreate(obj)

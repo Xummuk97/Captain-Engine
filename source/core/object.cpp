@@ -14,10 +14,22 @@ Object::Object(const string& type, const string& tag)
 
 Object::~Object()
 {
-	if (sprite)
+	for (Component* component : components)
 	{
-		delete sprite;
+		delete component;
 	}
+	components.clear();
+
+	if (componentDrawable)
+	{
+		delete componentDrawable;
+	}
+
+	for (pair<string, LuaRef*> variable : variables)
+	{
+		delete variable.second;
+	}
+	variables.clear();
 }
 
 LuaRef Object::getType()
@@ -71,4 +83,14 @@ void Object::draw()
 	{
 		componentDrawable->draw();
 	}
+}
+
+void Object::setVariable(const string& name, LuaRef value)
+{
+	variables[name] = new LuaRef(value);
+}
+
+LuaRef& Object::getVariable(const string& name)
+{
+	return *variables[name];
 }

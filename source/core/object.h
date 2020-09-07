@@ -27,11 +27,15 @@ public:
 	void update();
 	void draw();
 
+	void setVariable(const string& name, LuaRef value);
+	LuaRef& getVariable(const string& name);
+
 private:
 	int uniqueId;
 	string type, tag;
-	Sprite* sprite = nullptr;
 
 	list<Component*> components;
 	ComponentDrawable* componentDrawable;
+
+	map<string, LuaRef*> variables;
 };
