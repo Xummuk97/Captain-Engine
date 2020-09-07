@@ -22,7 +22,9 @@ public:
 	int getUniqueId();
 
 	void addComponent(const string& name);
-	LuaRef getComponentDrawable();
+	LuaRef getComponent(const string& name);
+	bool hasComponent(const string& name);
+	bool hasCustomComponent(const string& name);
 
 	void update();
 	void draw();
@@ -34,8 +36,8 @@ private:
 	int uniqueId;
 	string type, tag;
 
-	list<Component*> components;
-	ComponentDrawable* componentDrawable;
+	map<string, Component*> components;
+	list<Component*> customComponents;
 
 	map<string, LuaRef*> variables;
 };

@@ -21,6 +21,11 @@ void Component::update(void* obj, int componentType)
 	}
 }
 
+string Component::getName()
+{
+	return name;
+}
+
 ComponentDrawable::ComponentDrawable()
 {
 }

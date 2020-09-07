@@ -14,16 +14,17 @@ Object::Object(const string& type, const string& tag)
 
 Object::~Object()
 {
-	for (Component* component : components)
+	for (pair<string, Component*> component : components)
 	{
-		delete component;
+		delete component.second;
 	}
 	components.clear();
 
-	if (componentDrawable)
+	for (Component* component : customComponents)
 	{
-		delete componentDrawable;
+		delete component;
 	}
+	customComponents.clear();
 
 	for (pair<string, LuaRef*> variable : variables)
 	{
@@ -56,22 +57,46 @@ void Object::addComponent(const string& name)
 {
 	if (name == "componentDrawable")
 	{
-		componentDrawable = new ComponentDrawable;
+		components[name] = new ComponentDrawable;
 	}
 	else
 	{
-		components.push_back(new Component(name));
+		customComponents.push_back(new Component(name));
 	}
 }
 
-LuaRef Object::getComponentDrawable()
+LuaRef Object::getComponent(const string& name)
 {
-	return Core::luaEngine.createVariable(componentDrawable);
+	if (name == "componentDrawable")
+	{
+		return Core::luaEngine.createVariable((ComponentDrawable*)components[name]);
+	}
+
+	cout << "Component name '" << name << "' was not found!" << endl;
+	return Core::luaEngine.createVariable(INVALID_OBJECT);
+}
+
+bool Object::hasComponent(const string& name)
+{
+	return components.find(name) != components.end();
+}
+
+bool Object::hasCustomComponent(const string& name)
+{
+	for (Component* component : customComponents)
+	{
+		if (component->getName() == name)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void Object::update()
 {
-	for (Component* component : components)
+	for (Component* component : customComponents)
 	{
 		component->update(this, ComponentType_Object);
 	}
@@ -79,9 +104,9 @@ void Object::update()
 
 void Object::draw()
 {
-	if (componentDrawable)
+	if (hasComponent("componentDrawable"))
 	{
-		componentDrawable->draw();
+		((ComponentDrawable*)components["componentDrawable"])->draw();
 	}
 }
 

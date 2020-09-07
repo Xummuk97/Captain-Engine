@@ -14,11 +14,13 @@ public:
 
 	virtual void update(void* obj, int componentType);
 
+	string getName();
+
 private:
 	string name;
 };
 
-class ComponentDrawable : Component
+class ComponentDrawable : public Component
 {
 public:
 	ComponentDrawable();
