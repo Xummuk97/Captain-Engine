@@ -5,7 +5,7 @@
 using namespace captain;
 
 Core*					Core::core;
-RenderWindow*			Core::renderWindow;
+captain::Window			Core::window;
 LuaEngine				Core::luaEngine;
 map<string, Texture*>	Core::textures;
 Clock					Core::clock;
@@ -16,21 +16,46 @@ Core::Core()
 {
 	Core::core = this;
 
-	loadLuaNamespaces();
+	initLua();
 	
+	Core::luaEngine.getVariable("onEngineSetup")();
+
+	Core::window.startWindow();
+}
+
+Core::~Core()
+{
+}
+
+void Core::loadTexture(const string& name, const string& file)
+{
+	Texture* texture = new Texture;
+	texture->loadFromFile("resources/textures/" + file);
+	Core::textures[name] = texture;
+}
+
+bool Core::isKeyPressed(int key)
+{
+	return sf::Keyboard::isKeyPressed((sf::Keyboard::Key)key);
+}
+
+void Core::loadLevel(const string& file)
+{
+
+}
+
+void captain::Core::initLua()
+{
+	initLuaNamespaces();
+
 	if (!Core::luaEngine.include(LUA_MAIN_FILE))
 	{
 		cout << "File '" << LUA_MAIN_FILE << "' was not found!" << endl;
 	}
 
-	Core::renderWindow = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
-	Core::renderWindow->setFramerateLimit(windowFPS);
-	Core::renderWindow->setVerticalSyncEnabled(windowVerticalSyncEnabled);
-
-	ImGui::SFML::Init(*Core::renderWindow);
-
 	Core::luaEngine.setVariable("core", this);
 	Core::luaEngine.setVariable("level", &Core::level);
+	Core::luaEngine.setVariable("window", &Core::window);
 
 	Core::luaEngine.setVariable("INVALID_OBJECT", INVALID_OBJECT);
 	Core::luaEngine.setVariable("LEVEL_TYPELOADER_TILED", (int)Level::TypeLoader::Tiled);
@@ -62,115 +87,50 @@ Core::Core()
 
 		Core::luaEngine.setVariable(buttons[i], i);
 	}
-	
-	Core::luaEngine.getVariable("onEngineSetup")();
-
-	startWindow();
 }
 
-Core::~Core()
-{
-	Core::renderWindow->close();
-}
-
-void Core::setParam(const string& name, LuaRef value)
-{
-	if (name == "window_title")
-	{
-		windowTitle = value.cast<string>();
-		Core::renderWindow->setTitle(windowTitle);
-	}
-	else if (name == "window_fps")
-	{
-		windowFPS = value.cast<unsigned int>();
-		Core::renderWindow->setFramerateLimit(windowFPS);
-	}
-	else if (name == "window_vertical_sync")
-	{
-		windowVerticalSyncEnabled = value.cast<bool>();
-		Core::renderWindow->setVerticalSyncEnabled(windowVerticalSyncEnabled);
-	}
-	else if (name == "window_position")
-	{
-		Vector2i windowPosition = value.cast<Vector2i>();
-		Core::renderWindow->setPosition(windowPosition);
-	}
-	else if (name == "window_size")
-	{
-		Vector2u windowSize = value.cast<Vector2u>();
-		Core::renderWindow->setSize(windowSize);
-	}
-	
-}
-
-LuaRef Core::getParam(const string& name)
-{
-	if (name == "window_title")
-	{
-		return Core::luaEngine.createVariable(windowTitle);
-	}
-	else if (name == "window_fps")
-	{
-		return Core::luaEngine.createVariable(windowFPS);
-	}
-	else if (name == "window_vertical_sync")
-	{
-		return Core::luaEngine.createVariable(windowVerticalSyncEnabled);
-	}
-	else if (name == "window_position")
-	{
-		return Core::luaEngine.createVariable(Core::renderWindow->getPosition());
-	}
-	else if (name == "window_size")
-	{
-		return Core::luaEngine.createVariable(Core::renderWindow->getSize());
-	}
-	
-	cout << "Param '" << name << "' was not found!" << endl;
-	return Core::luaEngine.createVariable(0);
-}
-
-void Core::loadTexture(const string& name, const string& file)
-{
-	Texture* texture = new Texture;
-	texture->loadFromFile("resources/textures/" + file);
-	Core::textures[name] = texture;
-}
-
-bool Core::isKeyPressed(int key)
-{
-	return sf::Keyboard::isKeyPressed((sf::Keyboard::Key)key);
-}
-
-void Core::loadLevel(const string& file)
-{
-
-}
-
-void Core::loadLuaNamespaces()
+void Core::initLuaNamespaces()
 {
 	Core::luaEngine.getNamespace()
+		.beginClass<captain::Window>("Window")
+			.addConstructor<void (*) (void)>()
+			.addFunction("create", &captain::Window::create)
+			.addFunction("setTitle", &captain::Window::setTitle)
+			.addFunction("setFPS", &captain::Window::setFPS)
+			.addFunction("setVerticalSync", &captain::Window::setVerticalSync)
+			.addFunction("setPosition", &captain::Window::setPosition)
+			.addFunction("setSize", &captain::Window::setSize)
+			.addFunction("getPosition", &captain::Window::getPosition)
+			.addFunction("getSize", &captain::Window::getSize)
+		.endClass()
 		.beginClass<Core>("Core")
 			.addConstructor<void (*) (void)>()
-			.addFunction("setParam", &Core::setParam)
-			.addFunction("getParam", &Core::getParam)
 			.addFunction("loadTexture", &Core::loadTexture)
 			.addFunction("isKeyPressed", &Core::isKeyPressed)
 		.endClass()
-		.beginClass<Vector2i>("Vector2i")
-			.addConstructor<void (*) (void)>()\
-			.addProperty("x", &Vector2i::x)
-			.addProperty("y", &Vector2i::y)
+		.beginClass<Point<int>>("IntPoint")
+			.addConstructor<void (*) (int, int)>()
+			.addFunction("setX", &Point<int>::setX)
+			.addFunction("getX", &Point<int>::getX)
+			.addFunction("setY", &Point<int>::setY)
+			.addFunction("getY", &Point<int>::getY)
+			.addFunction("getTable", &Point<int>::getTable)
 		.endClass()
-		.beginClass<Vector2u>("Vector2u")
-			.addConstructor<void (*) (void)>()\
-			.addProperty("x", &Vector2u::x)
-			.addProperty("y", &Vector2u::y)
+		.beginClass<Point<float>>("FloatPoint")
+			.addConstructor<void (*) (float, float)>()
+			.addFunction("setX", &Point<float>::setX)
+			.addFunction("getX", &Point<float>::getX)
+			.addFunction("setY", &Point<float>::setY)
+			.addFunction("getY", &Point<float>::getY)
+			.addFunction("getTable", &Point<float>::getTable)
 		.endClass()
-		.beginClass<Vector2f>("Vector2f")
-			.addConstructor<void (*) (void)>()\
-			.addProperty("x", &Vector2f::x)
-			.addProperty("y", &Vector2f::y)
+		.beginClass<Point<unsigned int>>("UnsignedPoint")
+			.addConstructor<void (*) (unsigned int, unsigned int)>()
+			.addFunction("setX", &Point<unsigned int>::setX)
+			.addFunction("getX", &Point<unsigned int>::getX)
+			.addFunction("setY", &Point<unsigned int>::setY)
+			.addFunction("getY", &Point<unsigned int>::getY)
+			.addFunction("getTable", &Point<unsigned int>::getTable)
 		.endClass()
 		.beginClass<Rectangle<int>>("IntRect")
 			.addConstructor<void (*) (int, int, int, int)> ()
@@ -183,6 +143,7 @@ void Core::loadLuaNamespaces()
 			.addFunction("setHeight", &Rectangle<int>::setHeight)
 			.addFunction("getHeight", &Rectangle<int>::getHeight)
 			.addFunction("isContains", &Rectangle<int>::isContains)
+			.addFunction("isContainsTable", &Rectangle<int>::isContainsTable)
 			.addFunction("isIntersects", &Rectangle<int>::isIntersects)
 			.addFunction("isIntersectsTable", &Rectangle<int>::isIntersectsTable)
 			.addFunction("getTable", &Rectangle<int>::getTable)
@@ -198,6 +159,7 @@ void Core::loadLuaNamespaces()
 			.addFunction("setHeight", &Rectangle<float>::setHeight)
 			.addFunction("getHeight", &Rectangle<float>::getHeight)
 			.addFunction("isContains", &Rectangle<float>::isContains)
+			.addFunction("isContainsTable", &Rectangle<float>::isContainsTable)
 			.addFunction("isIntersects", &Rectangle<float>::isIntersects)
 			.addFunction("isIntersectsTable", &Rectangle<float>::isIntersectsTable)
 			.addFunction("getTable", &Rectangle<float>::getTable)
@@ -242,7 +204,7 @@ void Core::loadLuaNamespaces()
 			.addFunction("swapObjectLayer", &Level::swapObjectLayer)
 			.addFunction("load", &Level::load)
 		.endClass()
-		.beginNamespace("ImGui")
+		.beginNamespace("ImGUI")
 			.addFunction("beginWindow", &ImGuiEngine::beginWindow)
 			.addFunction("endWindow", &ImGui::End)
 			.addFunction("beginGroup", &ImGui::BeginGroup)
@@ -251,64 +213,4 @@ void Core::loadLuaNamespaces()
 			.addFunction("label", &ImGuiEngine::label)
 			.addFunction("colorEdit4", &ImGuiEngine::colorEdit4)
 		.endNamespace();
-}
-
-void Core::startWindow()
-{
-	while (Core::renderWindow->isOpen())
-	{
-		eventProcess();
-		gameProcess();
-	}
-
-	ImGui::SFML::Shutdown();
-}
-
-void Core::eventProcess()
-{
-	sf::Event event;
-	while (Core::renderWindow->pollEvent(event))
-	{
-		ImGui::SFML::ProcessEvent(event);
-
-		if (event.type == sf::Event::Closed)
-		{
-			Core::renderWindow->close();
-		}
-	}
-}
-
-void Core::gameProcess()
-{
-	time = Core::clock.restart();
-	Core::deltaTime = time.asSeconds();
-
-	Core::level.update();
-	ImGui::SFML::Update(*Core::renderWindow, time);
-	Core::luaEngine.getVariable("onGUI")();
-	consoleProcess();
-
-	Core::renderWindow->clear();
-	Core::level.draw();
-	ImGui::SFML::Render(*Core::renderWindow);
-	Core::renderWindow->display();
-
-	Core::luaEngine.free();
-}
-
-void Core::consoleProcess()
-{
-	static char command[256], log[1024];
-
-	ImGui::Begin("Console");
-	ImGui::InputTextMultiline("Log", log, sizeof(log));
-	ImGui::InputText("Command", command, sizeof(command));
-	if (ImGui::Button("Execute"))
-	{
-		Core::luaEngine.eval(command);
-		sprintf_s(command, sizeof(command), "%s\n", command);
-		strcat_s(log, command);
-		command[0] = '\0';
-	}
-	ImGui::End();
 }

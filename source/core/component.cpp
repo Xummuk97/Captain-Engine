@@ -60,5 +60,5 @@ void ComponentDrawable::move(float x, float y)
 
 void ComponentDrawable::draw()
 {
-	Core::renderWindow->draw(sprite);
+	Core::window.draw(sprite);
 }

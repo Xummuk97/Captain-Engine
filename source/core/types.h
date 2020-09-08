@@ -1,9 +1,36 @@
 #pragma once
 #include <core/includes.h>
 #include <core/core.h>
+#include <core/component.h>
 
 namespace captain
 {
+	template<class T>
+	class Point
+	{
+	public:
+		Point(T x, T y)
+			: point(x, y)
+		{}
+
+		void setX(T x) { point.x = x; }
+		T getX() { return point.x; }
+
+		void setY(T y) { point.y = y; }
+		T getY() { return point.y; }
+
+		LuaRef getTable()
+		{
+			LuaRef value = Core::luaEngine.createTable();
+			value["x"] = point.x;
+			value["y"] = point.y;
+			return value;
+		}
+
+	private:
+		Vector2<T> point;
+	};
+
 	template<class T>
 	class Rectangle
 	{
@@ -29,6 +56,11 @@ namespace captain
 		bool isContains(T x, T y)
 		{
 			return rect.contains(x, y);
+		}
+
+		bool isContainsTable(LuaRef value)
+		{
+			return rect.contains(value["x"].cast<T>(), value["y"].cast<T>());
 		}
 
 		bool isIntersects(T x, T y, T width, T height)

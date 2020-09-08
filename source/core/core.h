@@ -2,6 +2,7 @@
 #include <core/includes.h>
 #include <core/lua_engine.h>
 #include <core/level.h>
+#include <core/window.h>
 
 using namespace std;
 using namespace sf;
@@ -16,17 +17,13 @@ namespace captain
 		Core();
 		~Core();
 
-		void setParam(const string& name, LuaRef value);
-		LuaRef getParam(const string& name);
-
-		void loadTexture(const string& name, const string& file);
-
 		bool isKeyPressed(int key);
 
+		void loadTexture(const string& name, const string& file);
 		void loadLevel(const string& file);
 
 		static Core* core;
-		static RenderWindow* renderWindow;
+		static captain::Window window;
 		static LuaEngine luaEngine;
 		static map<string, Texture*> textures;
 		static Clock clock;
@@ -34,19 +31,8 @@ namespace captain
 		static Level level;
 
 	private:
-		void loadLuaNamespaces();
-		void startWindow();
-
-		void eventProcess();
-		void gameProcess();
-
-		void consoleProcess();
-
-		string windowTitle = "Captain Engine 1.0";
-		int windowWidth = 800;
-		int windowHeight = 600;
-		int windowFPS = 300;
-		bool windowVerticalSyncEnabled = false;
+		void initLua();
+		void initLuaNamespaces();
 
 		Time time;
 	};

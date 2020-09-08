@@ -159,6 +159,7 @@
     <ClCompile Include="source\core\level.cpp" />
     <ClCompile Include="source\core\lua_engine.cpp" />
     <ClCompile Include="source\core\object.cpp" />
+    <ClCompile Include="source\core\window.cpp" />
     <ClCompile Include="source\imgui\imgui-SFML.cpp" />
     <ClCompile Include="source\imgui\imgui.cpp" />
     <ClCompile Include="source\imgui\imgui_demo.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="source\core\lua_engine.h" />
     <ClInclude Include="source\core\object.h" />
     <ClInclude Include="source\core\types.h" />
+    <ClInclude Include="source\core\window.h" />
     <ClInclude Include="source\imgui\imconfig-SFML.h" />
     <ClInclude Include="source\imgui\imconfig.h" />
     <ClInclude Include="source\imgui\imgui-SFML.h" />
