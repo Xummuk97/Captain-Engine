@@ -10,10 +10,13 @@ end
 
 function onEngineSetup()
 	core:loadTexture("test", "test1.png")
-
 	base = level:addLayer("base")
-
 	level:spawnObject(base, "Player")
+
+	rect1 = IntRect(4, 9, 22, 13)
+	rect2 = IntRect(4, 9, 22, 13)
+
+	print(rect1:isIntersectsTable(rect2:getTable()))
 end
 
 function onObjectCreate(obj)

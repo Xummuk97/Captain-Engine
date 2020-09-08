@@ -150,9 +150,6 @@
     <ClCompile Include="source\core\imgui_engine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="source\core\types.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="source\core\layer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -359,9 +356,6 @@
     <ClInclude Include="source\core\imgui_engine.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="source\core\types.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="source\core\includes.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -372,6 +366,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="source\core\component.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\core\types.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

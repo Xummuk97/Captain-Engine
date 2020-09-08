@@ -159,7 +159,6 @@
     <ClCompile Include="source\core\level.cpp" />
     <ClCompile Include="source\core\lua_engine.cpp" />
     <ClCompile Include="source\core\object.cpp" />
-    <ClCompile Include="source\core\types.cpp" />
     <ClCompile Include="source\imgui\imgui-SFML.cpp" />
     <ClCompile Include="source\imgui\imgui.cpp" />
     <ClCompile Include="source\imgui\imgui_demo.cpp" />
