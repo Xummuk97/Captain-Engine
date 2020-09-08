@@ -32,6 +32,8 @@ Core::Core()
 	Core::luaEngine.setVariable("level", &Core::level);
 
 	Core::luaEngine.setVariable("INVALID_OBJECT", INVALID_OBJECT);
+	Core::luaEngine.setVariable("LEVEL_TYPELOADER_TILED", (int)Level::TypeLoader::Tiled);
+	Core::luaEngine.setVariable("LEVEL_TYPELOADER_CAPTAIN", (int)Level::TypeLoader::Captain);
 
 	vector<string> buttons =
 	{
@@ -139,6 +141,11 @@ bool Core::isKeyPressed(int key)
 	return sf::Keyboard::isKeyPressed((sf::Keyboard::Key)key);
 }
 
+void Core::loadLevel(const string& file)
+{
+
+}
+
 void Core::loadLuaNamespaces()
 {
 	Core::luaEngine.getNamespace()
@@ -192,15 +199,15 @@ void Core::loadLuaNamespaces()
 			.addFunction("addComponent", &Object::addComponent)
 			.addFunction("getComponent", &Object::getComponent)
 			.addFunction("hasComponent", &Object::hasComponent)
-			.addFunction("hasCustomComponent", &Object::hasCustomComponent)
 			.addFunction("setVariable", &Object::setVariable)
 			.addFunction("getVariable", &Object::getVariable)
+			.addFunction("setKill", &Object::setKill)
+			.addFunction("getIsKill", &Object::getIsKill)
 		.endClass()
 		.beginClass<Layer>("Layer")
 			.addConstructor<void (*) (const string&)>()
 			.addFunction("spawnObject", &Layer::spawnObject)
 			.addFunction("removeObject", &Layer::removeObject)
-			.addFunction("clear", &Layer::clear)
 			.addFunction("getName", &Layer::getName)
 		.endClass()
 		.beginClass<Level>("Level")
@@ -210,11 +217,11 @@ void Core::loadLuaNamespaces()
 			.addFunction("getLayer", &Level::getLayer)
 			.addFunction("spawnObject", &Level::spawnObject)
 			.addFunction("spawnObjectTag", &Level::spawnObjectTag)
-			.addFunction("clear", &Level::clear)
 			.addFunction("getMapIdFromName", &Level::getMapIdFromName)
 			.addFunction("getObjectInfoFromTag", &Level::getObjectInfoFromTag)
 			.addFunction("getObjectInfoFromUniqueId", &Level::getObjectInfoFromUniqueId)
 			.addFunction("swapObjectLayer", &Level::swapObjectLayer)
+			.addFunction("load", &Level::load)
 		.endClass()
 		.beginNamespace("ImGui")
 			.addFunction("beginWindow", &ImGuiEngine::beginWindow)

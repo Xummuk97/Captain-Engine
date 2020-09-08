@@ -84,7 +84,12 @@ LuaRef Object::getComponent(const string& name)
 
 bool Object::hasComponent(const string& name)
 {
-	return components.find(name) != components.end();
+	if (components.find(name) != components.end())
+	{
+		return true;
+	}
+
+	return hasCustomComponent(name);
 }
 
 bool Object::hasCustomComponent(const string& name)
@@ -104,7 +109,7 @@ void Object::update()
 {
 	for (Component* component : customComponents)
 	{
-		component->update(this, ComponentType_Object);
+		component->update(this, Component::Type::Object);
 	}
 }
 
@@ -112,7 +117,7 @@ void Object::draw()
 {
 	if (hasComponent("componentDrawable"))
 	{
-		((ComponentDrawable*)components["componentDrawable"])->draw();
+		static_cast<ComponentDrawable*>(components["componentDrawable"])->draw();
 	}
 }
 
@@ -124,4 +129,14 @@ void Object::setVariable(const string& name, LuaRef value)
 LuaRef& Object::getVariable(const string& name)
 {
 	return *variables[name];
+}
+
+void Object::setKill(bool isKill)
+{
+	this->isKill = isKill;
+}
+
+bool Object::getIsKill()
+{
+	return isKill;
 }

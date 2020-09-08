@@ -3,18 +3,19 @@
 
 namespace captain
 {
-	enum
-	{
-		ComponentType_Object
-	};
-
 	class Component
 	{
 	public:
-		Component(const string& name = "");
+		enum class Type
+		{
+			Object
+		};
+
+		Component();
+		Component(const string& name);
 		~Component();
 
-		virtual void update(void* obj, int componentType);
+		virtual void update(void* obj, const Component::Type& type);
 
 		string getName();
 

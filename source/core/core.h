@@ -8,7 +8,7 @@ using namespace sf;
 
 namespace captain
 {
-	#define LUA_MAIN_FILE "resources/scripts/main.lua"
+	const string LUA_MAIN_FILE = "resources/scripts/main.lua";
 
 	class Core
 	{
@@ -22,6 +22,8 @@ namespace captain
 		void loadTexture(const string& name, const string& file);
 
 		bool isKeyPressed(int key);
+
+		void loadLevel(const string& file);
 
 		static Core* core;
 		static RenderWindow* renderWindow;

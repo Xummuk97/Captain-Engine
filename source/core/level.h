@@ -5,12 +5,15 @@
 
 namespace captain
 {
-	#define LEVEL_TILED 0
-	#define LEVEL_CAPTAIN 1
-
 	class Level
 	{
 	public:
+		enum class TypeLoader
+		{
+			Tiled,
+			Captain
+		};
+
 		Level();
 		~Level();
 
@@ -26,8 +29,6 @@ namespace captain
 		LuaRef getObjectInfoFromUniqueId(int uniqueId);
 
 		void load(const string& path, int type);
-
-		void clear();
 
 		void update();
 		void draw();

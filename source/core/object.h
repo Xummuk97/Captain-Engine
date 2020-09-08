@@ -8,7 +8,7 @@ using namespace luabridge;
 
 namespace captain
 {
-	#define INVALID_OBJECT -1
+	const int INVALID_OBJECT = -1;
 
 	class Object
 	{
@@ -35,6 +35,9 @@ namespace captain
 		void setVariable(const string& name, LuaRef value);
 		LuaRef& getVariable(const string& name);
 
+		void setKill(bool isKill);
+		bool getIsKill();
+
 	private:
 		int uniqueId;
 		string type, tag;
@@ -43,5 +46,7 @@ namespace captain
 		list<Component*> customComponents;
 
 		map<string, LuaRef*> variables;
+
+		bool isKill;
 	};
 }

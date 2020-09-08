@@ -9,6 +9,7 @@ Level::Level()
 
 Level::~Level()
 {
+	// Serialize levels
 }
 
 int Level::addLayer(const string& name)
@@ -94,22 +95,14 @@ void Level::load(const string& path, int type)
 {
 	this->path = "resources/levels/" + path;
 
-	switch (type)
+	Level::TypeLoader enumType = static_cast<Level::TypeLoader>(type);
+
+	switch (enumType)
 	{
-	case LEVEL_TILED:
+	case Level::TypeLoader::Tiled:
 		loadFromTiled();
 		break;
 	}
-}
-
-void Level::clear()
-{
-	for (Layer* layer : layers)
-	{
-		delete layer;
-	}
-
-	layers.clear();
 }
 
 void Level::update()

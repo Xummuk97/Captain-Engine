@@ -33,9 +33,21 @@ void Layer::removeObject(int objectIndex)
 
 void Layer::update()
 {
-	for (Object* object : objects)
+	size_t size = objects.size();
+
+	for (size_t i = 0; i < size;)
 	{
-		object->update();
+		objects[i]->update();
+
+		if (objects[i]->getIsKill())
+		{
+			removeObject(i);
+			size--;
+		}
+		else
+		{
+			i++;
+		}
 	}
 }
 

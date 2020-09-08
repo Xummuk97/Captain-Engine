@@ -4,21 +4,23 @@
 
 using namespace captain;
 
+Component::Component()
+{}
+
 Component::Component(const string& name)
 	: name(name)
-{
-}
+{}
 
 Component::~Component()
 {
 }
 
-void Component::update(void* obj, int componentType)
+void Component::update(void* obj, const Component::Type& type)
 {
-	switch (componentType)
+	switch (type)
 	{
-	case ComponentType_Object:
-		Core::luaEngine.getVariable(name)((Object*)obj);
+	case Component::Type::Object:
+		Core::luaEngine.getVariable(name)(static_cast<Object*>(obj));
 		break;
 	}
 }
