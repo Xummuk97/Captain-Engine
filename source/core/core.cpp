@@ -11,9 +11,12 @@ map<string, Texture*>	Core::textures;
 Clock					Core::clock;
 float					Core::deltaTime;
 Level					Core::level;
+b2World*				Core::worldPhysix;
 
 Core::Core()
 {
+	Core::worldPhysix = new b2World({ 0.0f, -10.0f });
+
 	Core::core = this;
 
 	initLua();

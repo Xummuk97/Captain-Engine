@@ -10,7 +10,6 @@ end
 
 function onEngineSetup()
 	window:create("Captain Engine 1.0", 800, 600)
-	window:setTitle("Hello, world!")
 
 	core:loadTexture("test", "test1.png")
 	base = level:addLayer("base")

@@ -29,6 +29,7 @@ namespace captain
 		static Clock clock;
 		static float deltaTime;
 		static Level level;
+		static b2World* worldPhysix;
 
 	private:
 		void initLua();

@@ -162,6 +162,141 @@
     <ClCompile Include="source\core\window.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_broad_phase.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_chain_shape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_circle_shape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_collide_circle.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_collide_edge.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_collide_polygon.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_collision.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_distance.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_dynamic_tree.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_edge_shape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_polygon_shape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\collision\b2_time_of_impact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\common\b2_block_allocator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\common\b2_draw.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\common\b2_math.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\common\b2_settings.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\common\b2_stack_allocator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\common\b2_timer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_body.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_chain_circle_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_chain_polygon_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_circle_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_contact_manager.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_contact_solver.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_distance_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_edge_circle_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_edge_polygon_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_fixture.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_friction_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_gear_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_island.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_motor_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_mouse_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_polygon_circle_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_polygon_contact.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_prismatic_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_pulley_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_revolute_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_weld_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_wheel_joint.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_world.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\dynamics\b2_world_callbacks.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="source\box2d\src\rope\b2_rope.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\lua\lapi.h">
@@ -377,6 +512,144 @@
     <ClInclude Include="source\core\window.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_block_allocator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_body.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_broad_phase.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_chain_shape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_circle_shape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_collision.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_contact_manager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_distance.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_distance_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_draw.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_dynamic_tree.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_edge_shape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_fixture.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_friction_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_gear_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_growable_stack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_math.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_motor_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_mouse_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_polygon_shape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_prismatic_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_pulley_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_revolute_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_rope.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_settings.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_shape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_stack_allocator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_time_of_impact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_time_step.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_timer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_weld_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_wheel_joint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_world.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\b2_world_callbacks.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\include\box2d\box2d.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_chain_circle_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_chain_polygon_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_circle_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_contact_solver.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_edge_circle_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_edge_polygon_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_island.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_polygon_circle_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="source\box2d\src\dynamics\b2_polygon_contact.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="source\tinyxml2\.gitignore" />
@@ -400,12 +673,24 @@
     <None Include="source\imgui\conanfile.py" />
     <None Include="source\imgui\LICENSE" />
     <None Include="source\imgui\README.md" />
+    <None Include="source\box2d\.gitignore" />
+    <None Include="source\box2d\.travis.yml" />
+    <None Include="source\box2d\build.bat">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="source\box2d\build.sh" />
+    <None Include="source\box2d\build_docs.sh" />
+    <None Include="source\box2d\CHANGELOG.md" />
+    <None Include="source\box2d\deploy_docs.sh" />
+    <None Include="source\box2d\LICENSE" />
+    <None Include="source\box2d\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="source\tinyxml2\CMakeLists.txt" />
     <Text Include="source\tinyxml2\LICENSE.txt" />
     <Text Include="source\imgui\CMakeLists.txt" />
     <Text Include="source\imgui\LICENSE.txt" />
+    <Text Include="source\box2d\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="source\tinyxml2\TinyXML2_small.png">
