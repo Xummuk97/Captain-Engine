@@ -26,8 +26,6 @@ namespace captain
 
 		void addComponent(const string& name);
 		LuaRef getComponent(const string& name);
-		bool hasComponent(const string& name);
-		bool hasCustomComponent(const string& name);
 
 		void update();
 		void draw();
@@ -42,8 +40,7 @@ namespace captain
 		int uniqueId;
 		string type, tag;
 
-		map<string, Component*> components;
-		list<Component*> customComponents;
+		Components* components;
 
 		map<string, LuaRef*> variables;
 

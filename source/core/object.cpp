@@ -10,6 +10,7 @@ Object::Object()
 Object::Object(const string& type, const string& tag)
 	: type(type)
 	, tag(tag)
+	, components(new Components(this))
 {
 	static int _uniqueId = 0;
 	_uniqueId++;
@@ -20,18 +21,6 @@ Object::Object(const string& type, const string& tag)
 
 Object::~Object()
 {
-	for (pair<string, Component*> component : components)
-	{
-		delete component.second;
-	}
-	components.clear();
-
-	for (Component* component : customComponents)
-	{
-		delete component;
-	}
-	customComponents.clear();
-
 	for (pair<string, LuaRef*> variable : variables)
 	{
 		delete variable.second;
@@ -63,11 +52,11 @@ void Object::addComponent(const string& name)
 {
 	if (name == "componentDrawable")
 	{
-		components[name] = new ComponentDrawable;
+		components->addCustomComponent(name, new ComponentDrawable);
 	}
 	else
 	{
-		customComponents.push_back(new Component(name));
+		components->addComponent(new ComponentLua(name));
 	}
 }
 
@@ -75,50 +64,18 @@ LuaRef Object::getComponent(const string& name)
 {
 	if (name == "componentDrawable")
 	{
-		return Core::luaEngine.createVariable((ComponentDrawable*)components[name]);
+		return Core::luaEngine.createVariable(components->getCustomComponent<ComponentDrawable>(name));
 	}
-
-	cout << "Component name '" << name << "' was not found!" << endl;
-	return Core::luaEngine.createVariable(INVALID_OBJECT);
-}
-
-bool Object::hasComponent(const string& name)
-{
-	if (components.find(name) != components.end())
-	{
-		return true;
-	}
-
-	return hasCustomComponent(name);
-}
-
-bool Object::hasCustomComponent(const string& name)
-{
-	for (Component* component : customComponents)
-	{
-		if (component->getName() == name)
-		{
-			return true;
-		}
-	}
-
-	return false;
 }
 
 void Object::update()
 {
-	for (Component* component : customComponents)
-	{
-		component->update(this, Component::Type::Object);
-	}
+	components->updateComponents();
 }
 
 void Object::draw()
 {
-	if (hasComponent("componentDrawable"))
-	{
-		static_cast<ComponentDrawable*>(components["componentDrawable"])->draw();
-	}
+	components->updateCustomComponent("componentDrawable");
 }
 
 void Object::setVariable(const string& name, LuaRef value)

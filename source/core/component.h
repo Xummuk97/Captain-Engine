@@ -6,21 +6,51 @@ namespace captain
 	class Component
 	{
 	public:
-		enum class Type
-		{
-			Object
-		};
-
 		Component();
-		Component(const string& name);
 		~Component();
 
-		virtual void update(void* obj, const Component::Type& type);
+		virtual void update() = 0;
 
-		string getName();
+		string getLuaCallbackName();
+
+	protected:
+		void setLuaCallbackName(const string& name);
 
 	private:
-		string name;
+		string luaCallbackName = "-";
+	};
+
+	class Components
+	{
+	public:
+		Components(void* obj);
+		~Components();
+
+		void addComponent(Component* component);
+		void addCustomComponent(const string& name, Component* component);
+
+		void updateComponents();
+		void updateCustomComponent(const string& name);
+
+		template<class T>
+		T* getCustomComponent(const string& name)
+		{
+			return (T*)customComponents[name];
+		}
+
+	private:
+		void* obj;
+		list<Component*> components;
+		map<string, Component*> customComponents;
+	};
+
+	class ComponentLua : public Component
+	{
+	public:
+		ComponentLua(const string& luaCallbackName);
+		~ComponentLua();
+
+		void update();
 	};
 
 	class ComponentDrawable : public Component
@@ -29,13 +59,12 @@ namespace captain
 		ComponentDrawable();
 		~ComponentDrawable();
 
+		void update();
+
 		void setTexture(const string& name);
 		void setTextureRect(int x, int y, int width, int height);
-
-		void setPosition(float x, float y);
-		void move(float x, float y);
-
-		void draw();
+		
+		Sprite* getSprite();
 
 	private:
 		Sprite sprite;

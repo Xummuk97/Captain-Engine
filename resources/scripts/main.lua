@@ -1,13 +1,3 @@
-function componentMovable(obj)
-	componentDrawable = obj:getComponent("componentDrawable")
-
-	if core:isKeyPressed(KB_A) then 
-		componentDrawable:move(-1.0, 0.0)
-	elseif core:isKeyPressed(KB_D) then 
-		componentDrawable:move(1.0, 0.0)
-	end
-end
-
 function onEngineSetup()
 	window:create("Captain Engine 1.0", 800, 600)
 
@@ -18,7 +8,6 @@ end
 
 function onObjectCreate(obj)
 	if obj:getType() == "Player" then
-		obj:addComponent("componentMovable")
 		obj:addComponent("componentDrawable")
 
 		componentDrawable = obj:getComponent("componentDrawable")

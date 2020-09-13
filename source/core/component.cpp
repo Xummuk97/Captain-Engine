@@ -4,61 +4,132 @@
 
 using namespace captain;
 
+Object* objCast(void* obj)
+{
+	return (Object*)obj;
+}
+
 Component::Component()
 {}
 
-Component::Component(const string& name)
-	: name(name)
+Component::~Component()
 {}
 
-Component::~Component()
+void captain::Component::setLuaCallbackName(const string& name)
+{
+	luaCallbackName = name;
+}
+
+string captain::Component::getLuaCallbackName()
+{
+	return luaCallbackName;
+}
+
+captain::Components::Components(void* obj)
+	: obj(obj)
 {
 }
 
-void Component::update(void* obj, const Component::Type& type)
+captain::Components::~Components()
 {
-	switch (type)
+	for (Component* component : components)
 	{
-	case Component::Type::Object:
-		Core::luaEngine.getVariable(name)(static_cast<Object*>(obj));
-		break;
+		delete component;
+	}
+	components.clear();
+
+	for (pair<string, Component*> customComponent : customComponents)
+	{
+		delete customComponent.second;
+	}
+	customComponents.clear();
+}
+
+void captain::Components::addComponent(Component* component)
+{
+	components.push_back(component);
+}
+
+void captain::Components::addCustomComponent(const string& name, Component* component)
+{
+	customComponents[name] = component;
+}
+
+void captain::Components::updateComponents()
+{
+	string luaCallbackName;
+
+	for (Component* component : components)
+	{
+		luaCallbackName = component->getLuaCallbackName();
+
+		if (luaCallbackName != "-")
+		{
+			Core::luaEngine.getVariable(luaCallbackName)(objCast(obj));
+		}
+		else
+		{
+			component->update();
+		}
 	}
 }
 
-string Component::getName()
+void captain::Components::updateCustomComponent(const string& name)
 {
-	return name;
+	Component* customComponent = customComponents[name];
+
+	if (customComponent)
+	{
+		string luaCallbackName = customComponent->getLuaCallbackName();
+
+		if (luaCallbackName != "-")
+		{
+			Core::luaEngine.getVariable(luaCallbackName)(objCast(obj));
+		}
+		else
+		{
+			customComponent->update();
+		}
+	}
 }
 
-ComponentDrawable::ComponentDrawable()
+captain::ComponentLua::ComponentLua(const string& luaCallbackName)
+{
+	setLuaCallbackName(luaCallbackName);
+}
+
+captain::ComponentLua::~ComponentLua()
 {
 }
 
-ComponentDrawable::~ComponentDrawable()
+void captain::ComponentLua::update()
 {
 }
 
-void ComponentDrawable::setTexture(const string& name)
+captain::ComponentDrawable::ComponentDrawable()
+{
+}
+
+captain::ComponentDrawable::~ComponentDrawable()
+{
+}
+
+void captain::ComponentDrawable::update()
+{
+	Core::window.draw(sprite);
+}
+
+void captain::ComponentDrawable::setTexture(const string& name)
 {
 	sprite.setTexture(*Core::textures[name]);
 }
 
-void ComponentDrawable::setTextureRect(int x, int y, int width, int height)
+void captain::ComponentDrawable::setTextureRect(int x, int y, int width, int height)
 {
 	sprite.setTextureRect({ x, y, width, height });
 }
 
-void ComponentDrawable::setPosition(float x, float y)
+Sprite* captain::ComponentDrawable::getSprite()
 {
-	sprite.setPosition(x, y);
-}
-
-void ComponentDrawable::move(float x, float y)
-{
-	sprite.move(x * Core::deltaTime * 100.0f, y * Core::deltaTime * 100.0f);
-}
-
-void ComponentDrawable::draw()
-{
-	Core::window.draw(sprite);
+	return &sprite;
 }
