@@ -101,7 +101,7 @@ void captain::Window::processGame()
 	time = Core::clock.restart();
 	Core::deltaTime = time.asSeconds();
 
-	Core::worldPhysix->Step(1 / 60.0f, 10, 10);
+	Core::worldPhysix->Step(1 / 60.0f, 1, 1);
 
 	Core::level.update();
 	ImGui::SFML::Update(*renderWindow, time);

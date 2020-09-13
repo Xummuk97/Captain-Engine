@@ -54,6 +54,10 @@ void Object::addComponent(const string& name)
 	{
 		components->addCustomComponent(name, new ComponentDrawable);
 	}
+	else if (name == "componentPhysix")
+	{
+		components->addCustomComponent(name, new ComponentPhysix(components->getCustomComponent<ComponentDrawable>("componentDrawable")->getSprite()));
+	}
 	else
 	{
 		components->addComponent(new ComponentLua(name));
@@ -66,11 +70,16 @@ LuaRef Object::getComponent(const string& name)
 	{
 		return Core::luaEngine.createVariable(components->getCustomComponent<ComponentDrawable>(name));
 	}
+	else if (name == "componentPhysix")
+	{
+		return Core::luaEngine.createVariable(components->getCustomComponent<ComponentPhysix>(name));
+	}
 }
 
 void Object::update()
 {
 	components->updateComponents();
+	components->updateCustomComponent("componentPhysix");
 }
 
 void Object::draw()

@@ -13,6 +13,8 @@ function onObjectCreate(obj)
 		componentDrawable = obj:getComponent("componentDrawable")
 		componentDrawable:setTexture("test")
 		componentDrawable:setTextureRect(0, 0, 32, 32)
+
+		obj:addComponent("componentPhysix")
 	end
 end
 

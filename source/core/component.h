@@ -69,4 +69,20 @@ namespace captain
 	private:
 		Sprite sprite;
 	};
+
+	class ComponentPhysix : public Component
+	{
+	public:
+		ComponentPhysix(Sprite* sprite);
+		~ComponentPhysix();
+
+		void update();
+
+	private:
+		Sprite* sprite;
+		b2BodyDef bodyDef;
+		b2Body* body;
+		b2PolygonShape* shape;
+		b2FixtureDef fixture;
+	};
 }

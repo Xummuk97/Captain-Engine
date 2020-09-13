@@ -15,7 +15,7 @@ b2World*				Core::worldPhysix;
 
 Core::Core()
 {
-	Core::worldPhysix = new b2World({ 0.0f, -10.0f });
+	Core::worldPhysix = new b2World({ 0.0f, 10.0f });
 
 	Core::core = this;
 
@@ -171,6 +171,8 @@ void Core::initLuaNamespaces()
 			.addConstructor<void (*) (void)>()
 			.addFunction("setTexture", &ComponentDrawable::setTexture)
 			.addFunction("setTextureRect", &ComponentDrawable::setTextureRect)
+		.endClass()
+		.beginClass<ComponentPhysix>("ComponentPhysix")
 		.endClass()
 		.beginClass<Object>("Object")
 			.addConstructor<void (*) (const string&)>()

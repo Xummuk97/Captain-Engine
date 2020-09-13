@@ -133,3 +133,34 @@ Sprite* captain::ComponentDrawable::getSprite()
 {
 	return &sprite;
 }
+
+captain::ComponentPhysix::ComponentPhysix(Sprite* sprite)
+	: sprite(sprite)
+{
+	Vector2f position = sprite->getPosition();
+
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.fixedRotation = true;
+
+	body = Core::worldPhysix->CreateBody(&bodyDef);
+
+	shape = new b2PolygonShape;
+	shape->SetAsBox(32.0f, 32.0f);
+
+	fixture.shape = shape;
+	fixture.density = 1.0f; 
+	fixture.friction = 0.3f;
+
+	body->CreateFixture(&fixture);
+}
+
+captain::ComponentPhysix::~ComponentPhysix()
+{
+}
+
+void captain::ComponentPhysix::update()
+{
+	b2Vec2 position = body->GetPosition();
+
+	sprite->setPosition(position.x, position.y);
+}
